@@ -1,0 +1,19 @@
+{
+  "name": "back-end2800",
+  "version": "1.0.0",
+  "description": "Team Name: BBY-02\r Team Members: \r - Person 1 Alex\r - Person 2 Yiming\r - Person 3 Niki\r - Person 4 Ephraim\r - Person 5 Nickolay\r ## More details to come\r TBA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
+    "@truffle/hdwallet-provider": "^2.1.15",
+    "axios": "^1.6.8",
+    "config": "^3.3.11",
+    "dotenv": "^16.4.5",
+    "truffle": "^5.11.5"
+  }
+}

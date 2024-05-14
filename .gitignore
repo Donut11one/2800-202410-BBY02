@@ -42,7 +42,7 @@ build/Release
 node_modules/
 jspm_packages/
 front-end/node_modules/
-fontt-end/package-lock.json
+front-end/package-lock.json
 package-lock.json
 
 # Snowpack dependency directory (https://snowpack.dev/)

@@ -15,10 +15,7 @@ const storeDataToFile = async (jsonData) => {
             // We will be storing all ipfsHashes as array of objects
             await fs.writeFile(filePath, JSON.stringify([]));
         }
-        const data = await fs.readFile(filePath, 'utf8');
-        const json = JSON.parse(data);
-        json.push(jsonData);
-        await fs.writeFile(filePath, JSON.stringify(json));
+        return jsonData;
     } catch (err) {
         console.log('Error occured while storing data to file', err);
     }

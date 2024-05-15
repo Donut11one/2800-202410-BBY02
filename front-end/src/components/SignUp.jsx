@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../fbconfig";
 
 const SignUp = ({ onClose }) => {
   const [name, setName] = useState("");
@@ -7,17 +9,28 @@ const SignUp = ({ onClose }) => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    // Add your sign-up logic here
-    console.log("Sign Up with:", name, email, password);
-    // Close the modal
-    onClose();
+    if (!email || !password) {
+      console.log("Input field empty");
+      return;
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("Sign Up with:", user);
+        onClose(); // Close the modal after successful sign up
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error("Error:", errorCode, errorMessage);
+      });
   };
 
   return (
-    <div className="modal flex items-center justify-center"  style={{ zIndex: 100 }}>
+    <div className="modal flex items-center justify-center" style={{ zIndex: 100 }}>
       <div className="modal-content bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
-        <form id = "signup" onSubmit={handleSignUp}>
+        <form id="signup" onSubmit={handleSignUp}>
           <input
             type="text"
             placeholder="Name"
@@ -45,6 +58,7 @@ const SignUp = ({ onClose }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="new-password"
             className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
           />
           <button

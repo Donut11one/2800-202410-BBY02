@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { auth } from "./fbconfig";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Landing from "./components/pages/Landing";
-import Signin from "./components/pages/Signin";
-import Signup from "./components/pages/Signup";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 import Home from "./components/pages/Home";
 
 const App = () => {
@@ -37,8 +37,8 @@ const App = () => {
       <Router>
         <Routes>
           <Route exact path="/" element={<Landing user={user}></Landing>} />
-          <Route path="/signin" element={<Signin user={user}></Signin>} />
-          <Route path="/signup" element={<Signup user={user}></Signup>} />
+          <Route path="/Login" element={<Login user={user}></Login>} />
+          <Route path="/SignUp" element={<SignUp user={user}></SignUp>} />
           <Route
             path="/home"
             element={

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../fbconfig";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 const SignUp = ({ onClose }) => {
   const [name, setName] = useState(""); // State for user's name
@@ -19,10 +19,11 @@ const SignUp = ({ onClose }) => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
+      // Create a document reference with the UID as the document ID
+      const userDocRef = doc(db, "users", user.uid);
+
       // Store user data in Firestore
-      const valRef = collection(db, "users");
-      await addDoc(valRef, {
-        uid: user.uid, // Store user ID
+      await setDoc(userDocRef, {
         name: name, // Set the user's name
         email: email,
       });

@@ -1,0 +1,19 @@
+#main{
+    display: flex;
+    height : 100vh;
+    width: 100vw;
+    background-image: url("/public/images/Ozp.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+#logo{
+    display: flex;
+    max-width: 90%;
+    align-items: center;
+}
+#logodisplay{
+    width: 100%;
+}

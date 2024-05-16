@@ -1,6 +1,5 @@
 .containers {
-  width: 50%;
-  height: 100px;
-  border: solid;
-  background-color: rgb(47, 218, 203);
+  width: 90%;
+  height: 80%;
+  background-color: rgb(47, 218, 203,60%);
 }

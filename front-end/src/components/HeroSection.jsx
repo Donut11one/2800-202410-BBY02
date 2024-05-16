@@ -18,22 +18,13 @@ const HeroSection = () => {
 
   return (
     <div className="hero-container relative">
-      <video className="vid absolute inset-0 w-full h-full object-cover" src="/videos/video-1.mp4" autoPlay loop muted />
-      <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-
-      <img src="/DocuMintFull.png" alt="DocuMint Logo" className="img" /> 
-      {/* <img src="/DocuMintHorizontal.png" alt="DocuMint Logo" className="img" />  */}
-      {/* <img src="/DM_Circle_Small.png" alt="DocuMint Logo" className="img" />  */}
-      {/* <img src="/DM_Circle.png" alt="DocuMint Logo" className="img" />  */}
-        
-        <h1 className="text-4xl font-bold text-white mb-8">DocuMint</h1>
         <HeroSectionVid />
         <div className="hero-btns flex flex-col items-center">
           <Button
             className="btns mb-4 bg-green-400 hover:bg-green-500"
             buttonStyle="btn--outline"
-            buttonSize="btn--medium"
+            buttonSize="btn--large"
             onClick={openLoginModal}
           >
             LOGIN

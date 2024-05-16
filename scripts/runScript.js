@@ -8,8 +8,8 @@ const filehash = async (path) => {
     const temp = await pinFileToIPFS(path);
     console.log(temp);
     console.log("sucessfully get hash from IPFS")
-    var imageurl = "https://ipfs.io/ipfs/" +  temp;
-    console.log(imageurl);
+    // var imageurl = "https://ipfs.io/ipfs/" +  temp;
+    // console.log(imageurl);
     console.log("Sucessfully convert to url");
 }
 filehash(filePath)

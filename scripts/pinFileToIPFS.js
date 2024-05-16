@@ -25,8 +25,9 @@ const pinFileToIPFS = async (filePath) => {
         };
         // console.log('request:', request);
         const response = await axios(request);
-        console.log('Successfully pinned file to IPFS : ',response.data);
-        const hashString = await storeDataToFile(response.data.IpfsHash);
+        console.log('Successfully pinned file to IPFS : ');
+        const hashString = await storeDataToFile(response.data);
+
         return hashString;
     } catch (err) {
         console.log('Error occurred while pinning file to IPFS: ', err);

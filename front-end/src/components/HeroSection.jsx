@@ -22,7 +22,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
 
-      <img src="/DocuMintFull.png" alt="DocuMint Logo" className="img" /> 
+      <img src="/images/DocuMintFull.png" alt="DocuMint Logo" className="img" /> 
       {/* <img src="/DocuMintHorizontal.png" alt="DocuMint Logo" className="img" />  */}
       {/* <img src="/DM_Circle_Small.png" alt="DocuMint Logo" className="img" />  */}
       {/* <img src="/DM_Circle.png" alt="DocuMint Logo" className="img" />  */}

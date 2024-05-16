@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../fbconfig";
+import { Navigate } from "react-router-dom";
+import "./Button.css"; // Import button styles
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = ({ onClose }) => {
@@ -40,6 +42,9 @@ const Login = ({ onClose }) => {
   }
 
   return (
+    <div className="modal flex items-center justify-center" style={{ zIndex: 100 }}>
+      <div className="modal-content bg-emerald-950 rounded-lg shadow-lg p-6">
+      <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>Login</h2>
     <div
       className="modal flex items-center justify-center"
       style={{ zIndex: 100 }}
@@ -71,14 +76,14 @@ const Login = ({ onClose }) => {
           <p onClick={handleReset}>Forgot Password?</p>
           <button
             type="submit"
-            className="block w-full bg-green-400 hover:bg-green-500 text-white py-2 mt-4 rounded-md focus:outline-none focus:bg-green-600"
+            className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
           >
             Login
           </button>
         </form>
         <button
           onClick={onClose}
-          className="block w-full bg-gray-200 text-gray-700 py-2 mt-2 rounded-md hover:bg-gray-300 focus:outline-none"
+          className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
         >
           Close
         </button>

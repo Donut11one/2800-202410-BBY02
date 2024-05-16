@@ -12,7 +12,6 @@ const Landing = ({ user }) => {
 
   return (
     <>
-      <Navbar />
       <HeroSection />
       <Footer />
     </>

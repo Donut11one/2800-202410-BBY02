@@ -1,18 +1,23 @@
-import React from "react";
-import { signOut } from "firebase/auth";
-import { auth } from "../../fbconfig";
+import React, { useState } from "react";
+import "../../App.css";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
+import ConnectWalletModal from "../ConnectWalletModal";
 
 const Home = () => {
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => console.log("Signed Out"))
-      .catch((error) => console.log(error));
-  };
+  const [showWalletModal, setShowWalletModal] = useState(false);
+
+  const openWalletModal = () => setShowWalletModal(true);
+  const closeWalletModal = () => setShowWalletModal(false);
 
   return (
     <>
-      <h1>Home Page!!!</h1>
-      <button onClick={handleSignOut}>Sign Out</button>
+      <Navbar />
+      <div className="home">
+        <button onClick={openWalletModal}>Connect Wallet</button>
+        {showWalletModal && <ConnectWalletModal onClose={closeWalletModal} />}
+      </div>
+      <Footer />
     </>
   );
 };

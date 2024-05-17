@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../fbconfig";
+import { auth, db } from "../fbconfig";
+import { doc, setDoc, getDoc, updateDoc  } from 'firebase/firestore';
 import "./Button.css"; // Import button styles
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -16,8 +17,30 @@ const Login = ({ onClose }) => {
       return;
     }
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
+
+        // Capture device and browser information
+        const deviceInfo = {
+          userAgent: navigator.userAgent,
+          deviceType: getDeviceType(),
+          browser: getBrowser(),
+        };
+
+        // Get user document reference
+        const userDocRef = doc(db, "users", user.uid);
+
+        // Check if user document exists in Firestore
+        const docSnapshot = await getDoc(userDocRef);
+        if (docSnapshot.exists()) {
+          // Update user information with new device and browser information
+          await updateDoc(userDocRef, {
+            deviceInfo: deviceInfo,
+          });
+        } else {
+          console.log("User document does not exist in Firestore");
+        }
+
         console.log("Login with:", user);
         setUser(user); // Set the authenticated user
         onClose(); // Close the modal after successful login
@@ -39,6 +62,23 @@ const Login = ({ onClose }) => {
   if (user) {
     return <Navigate to="/home" />;
   }
+
+  // Function to get device type
+  const getDeviceType = () => {
+    const userAgent = navigator.userAgent;
+    return /Mobile/.test(userAgent) ? "Mobile" : "Desktop";
+  };
+
+  // Function to get browser
+  const getBrowser = () => {
+    const userAgent = navigator.userAgent;
+    if (/Edg\//.test(userAgent)) return "Microsoft Edge";
+    if (/Chrome\//.test(userAgent)) return "Google Chrome";
+    if (/Firefox\//.test(userAgent)) return "Mozilla Firefox";
+    if (/Safari\//.test(userAgent)) return "Apple Safari";
+    if (/OPR\//.test(userAgent)) return "Opera";
+    return "Unknown Browser";
+  };
 
   return (
     <div className="modal flex items-center justify-center" style={{ zIndex: 100 }}>

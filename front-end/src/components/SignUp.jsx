@@ -20,6 +20,13 @@ const SignUp = ({ onClose }) => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
+      // Capture device and browser information
+      const deviceInfo = {
+        userAgent: navigator.userAgent,
+        deviceType: getDeviceType(),
+        browser: getBrowser(),
+      };
+
       // Create a document reference with the UID as the document ID
       const userDocRef = doc(db, "users", user.uid);
 
@@ -27,6 +34,7 @@ const SignUp = ({ onClose }) => {
       await setDoc(userDocRef, {
         name: name, // Set the user's name
         email: email,
+        deviceInfo: deviceInfo,
       });
 
       console.log("Sign Up with:", user);
@@ -39,10 +47,27 @@ const SignUp = ({ onClose }) => {
     }
   };
 
+  // Function to get device type
+  const getDeviceType = () => {
+    const userAgent = navigator.userAgent;
+    return /Mobile/.test(userAgent) ? "Mobile" : "Desktop";
+  };
+
+  // Function to get browser
+  const getBrowser = () => {
+    const userAgent = navigator.userAgent;
+    if (/Edg\//.test(userAgent)) return "Microsoft Edge";
+    if (/Chrome\//.test(userAgent)) return "Google Chrome";
+    if (/Firefox\//.test(userAgent)) return "Mozilla Firefox";
+    if (/Safari\//.test(userAgent)) return "Apple Safari";
+    if (/OPR\//.test(userAgent)) return "Opera";
+    return "Unknown Browser";
+  };
+
   return (
     <div className="modal flex items-center justify-center" style={{ zIndex: 100 }}>
       <div className="modal-content bg-emerald-950 rounded-lg shadow-lg p-6">
-        <h2 className="text-2xl font-bold mb-4"style={{ color: "white" }}>Sign Up</h2>
+        <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>Sign Up</h2>
         <form id="signup" onSubmit={handleSignUp}>
           <input
             type="text"

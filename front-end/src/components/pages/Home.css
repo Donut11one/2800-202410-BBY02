@@ -1,3 +1,4 @@
 .home{
-    background-image: url("/public/images/stream-bg.jpeg");
+    background-image: url("../../assets/images/stream-bg.jpeg");
+    background-size: cover;
 }

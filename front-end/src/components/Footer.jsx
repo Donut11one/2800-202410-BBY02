@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
-import logo from "../../public/images/DocuMintVertical.png";
+import logo from "../assets/images/DocuMintVertical.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTwitter,

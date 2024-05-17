@@ -13,7 +13,7 @@ import {
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Navbar.css";
-import logo from "../../public/images/DocuMintHorizontal.png";
+import logo from "../assets/images/DocuMintHorizontal.png";
 
 const Navbar = ({ buttonText = "Connect Wallet" }) => {
   const [click, setClick] = useState(false);

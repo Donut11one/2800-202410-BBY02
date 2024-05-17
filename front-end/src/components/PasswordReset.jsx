@@ -22,6 +22,9 @@ const PasswordReset = () => {
 
   return (
     <div className="password-reset-body">
+      <div id = "logo">
+        <img src="/images/DocuMintHorizontal.png" alt="DocuMint Logo" id = 'logodisplay'/> 
+      </div>
       <div className="password-reset-container">
         <h1>Enter your email</h1>
         <form onSubmit={(e) => handleSubmit(e)}>

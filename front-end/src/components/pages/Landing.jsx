@@ -1,7 +1,7 @@
 import React from "react";
 import "../../App.css";
 import HeroSection from "../HeroSection";
-import Navbar from "../Navbar";
+import logo from "../../assets/images/DocuMintHorizontal.png";
 import Footer from "../Footer";
 import { Navigate } from "react-router-dom";
 import "./Landing.css";
@@ -13,12 +13,10 @@ const Landing = ({ user }) => {
   return (
     <>
     
-    <div id = "main">
-      <video autoPlay muted loop>
-        <source src="/public/images/Landingbg.mp4" />
-      </video>
+    <div id = "main">  
       <div id = "logo">
-        <img src="/images/DocuMintHorizontal.png" alt="DocuMint Logo" id = 'logodisplay'/> 
+        <img src={logo} alt="DocuMint Logo" id = 'logodisplay'/> 
+
       </div>
       <HeroSection />
     </div>

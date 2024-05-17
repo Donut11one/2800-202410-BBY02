@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Home from "./components/pages/Home";
 import PasswordReset from "./components/PasswordReset";
+import NotFoundPage from "./components/pages/NotFoundPage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="/Login" element={<Login user={user}></Login>} />
           <Route path="/SignUp" element={<SignUp user={user}></SignUp>} />
           <Route path="/reset" element={<PasswordReset></PasswordReset>} />
+          <Route path='*' element={<NotFoundPage />} />
           <Route
             path="/home"
             element={

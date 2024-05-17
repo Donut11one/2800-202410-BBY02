@@ -8,6 +8,7 @@ const pinFileToIPFS = async (filePath) => {
     const pinataEndpoint = process.env.PINATA_ENDPOINT;
     const pinataApiKey = process.env.PINATA_API_KEY;
     const pinataApiSecret = process.env.PINATA_API_SECRET;
+    console.log(pinataEndpoint);
     const form_data = new FormData();
     try {
         form_data.append('file', fs.createReadStream(filePath));
@@ -22,11 +23,11 @@ const pinFileToIPFS = async (filePath) => {
             },
             data: form_data,
         };
-        console.log('request:', request);
+        // console.log('request:', request);
         const response = await axios(request);
-        console.log('Successfully pinned file to IPFS : ', response);
-        await storeDataToFile(response.data);
-        console.log('Successfully added IPFS response to json file');
+        console.log('Successfully pinned file to IPFS : ',response.data);
+        const hashString = await storeDataToFile(response.data.IpfsHash);
+        return hashString;
     } catch (err) {
         console.log('Error occurred while pinning file to IPFS: ', err);
     }

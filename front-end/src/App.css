@@ -22,3 +22,7 @@
   background-repeat: no-repeat;
   color: #fff;
 }
+
+.wallet input {
+  color: black;
+}

@@ -13,10 +13,7 @@ const Landing = ({ user }) => {
   return (
     <>
     
-    <div id = "main">
-      <video autoPlay muted loop>
-        <source src="/public/images/Landingbg.mp4" />
-      </video>
+    <div id = "main">  
       <div id = "logo">
         <img src="/images/DocuMintHorizontal.png" alt="DocuMint Logo" id = 'logodisplay'/> 
       </div>

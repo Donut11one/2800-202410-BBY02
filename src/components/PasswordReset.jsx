@@ -3,6 +3,7 @@ import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../fbconfig";
 import { useNavigate } from "react-router-dom";
 import "./PasswordReset.css";
+import logo from "../assets/images/DocuMintApp.png";
 
 const PasswordReset = () => {
   const history = useNavigate();
@@ -23,7 +24,7 @@ const PasswordReset = () => {
   return (
     <div className="password-reset-body">
       <div id = "logo">
-        <img src="/images/DocuMintHorizontal.png" alt="DocuMint Logo" id = 'logodisplay'/> 
+        <img src={logo} alt="DocuMint Logo" id = 'logodisplay'/> 
       </div>
       <div className="password-reset-container">
         <h1>Enter your email</h1>

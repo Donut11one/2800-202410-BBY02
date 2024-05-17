@@ -3,10 +3,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import "../../App.css";
+import UploadDocModal from "../UploadDocModal";
 
 const Wallet = () => {
   let { address } = useParams();
   const [walletAdd, setWalletAdd] = useState(address);
+  const [showUploadModal, setShowUploadModal] = useState(false);
+
+  const openUploadModal = () => setShowUploadModal(true);
+  const closeUploadModal = () => setShowUploadModal(false);
+
   let hiddenAddress =
     walletAdd.substring(0, 6) + "..." + walletAdd.substring(38);
 
@@ -36,7 +42,13 @@ const Wallet = () => {
       <Navbar buttonText={`Wallet Connected: ${hiddenAddress}`} />
       <div className="wallet">
         <h1>{`Connected: ${hiddenAddress}`}</h1>
-        <button className="btn btn--large btn--primary">Upload document</button>
+        <button
+          className="btn btn--large btn--primary"
+          onClick={openUploadModal}
+        >
+          Upload document
+        </button>
+        {showUploadModal && <UploadDocModal onClose={closeUploadModal} />}
       </div>
       <Footer />
     </>

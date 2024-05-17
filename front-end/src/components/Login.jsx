@@ -82,7 +82,7 @@ const Login = ({ onClose }) => {
 
   return (
     <div className="modal flex items-center justify-center" style={{ zIndex: 100 }}>
-      <div className="modal-content bg-white rounded-lg shadow-lg p-6">
+      <div className="modal-content bg-emerald-950 rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>Login</h2>
         <form id="login" onSubmit={handleLogin}>
           <input
@@ -106,7 +106,7 @@ const Login = ({ onClose }) => {
             className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
           />
           <br />
-          <p onClick={handleReset}>Forgot Password?</p>
+          <p className="text font-bold mb-4" style={{ color: "white" }} onClick={handleReset}>Forgot Password?</p>
           <button
             type="submit"
             className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"

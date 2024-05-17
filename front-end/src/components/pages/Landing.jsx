@@ -15,7 +15,8 @@ const Landing = ({ user }) => {
     
     <div id = "main">  
       <div id = "logo">
-        <img src="/images/DocuMintHorizontal.png" alt="DocuMint Logo" id = 'logodisplay'/> 
+        <img src="../../assets/images/DocuMintHorizontal.png" alt="DocuMint Logo" id = 'logodisplay'/> 
+
       </div>
       <HeroSection />
     </div>

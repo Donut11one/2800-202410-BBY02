@@ -5,8 +5,7 @@
   font-family: "PT Sans", sans-serif;
 }
 
-.home,
-.wallet {
+.home, .wallet {
   display: flex;
   flex-direction: column;
   height: 90vh;
@@ -15,16 +14,9 @@
   font-size: 3rem;
 }
 
-.home {
-  background-image: url("../public/images/sample-bg.jpeg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-}
 
 .wallet {
-  background-image: url("../public/images/wallet-page-sample-bg.jpeg");
+  background-image: url("./assets/images/wallet-page-sample-bg.jpeg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

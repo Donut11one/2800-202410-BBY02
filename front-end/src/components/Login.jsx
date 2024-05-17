@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../fbconfig";
-import { Navigate } from "react-router-dom";
 import "./Button.css"; // Import button styles
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -43,14 +42,8 @@ const Login = ({ onClose }) => {
 
   return (
     <div className="modal flex items-center justify-center" style={{ zIndex: 100 }}>
-      <div className="modal-content bg-emerald-950 rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>Login</h2>
-    <div
-      className="modal flex items-center justify-center"
-      style={{ zIndex: 100 }}
-    >
       <div className="modal-content bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
+        <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>Login</h2>
         <form id="login" onSubmit={handleLogin}>
           <input
             type="email"
@@ -77,13 +70,17 @@ const Login = ({ onClose }) => {
           <button
             type="submit"
             className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
+          ></button>
+          <button
+            type="submit"
+            className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
           >
             Login
           </button>
         </form>
         <button
           onClick={onClose}
-          className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
+          className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
         >
           Close
         </button>
@@ -93,3 +90,4 @@ const Login = ({ onClose }) => {
 };
 
 export default Login;
+

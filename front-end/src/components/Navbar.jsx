@@ -15,7 +15,7 @@ import {
 import "./Navbar.css";
 import logo from "../../public/images/DocuMintHorizontal.png";
 
-const Navbar = () => {
+const Navbar = ({ buttonText = "Connect Wallet" }) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -94,7 +94,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">Connect Wallet</Button>}
+          {button && <Button buttonStyle="btn--outline">{buttonText}</Button>}
         </div>
       </nav>
     </>

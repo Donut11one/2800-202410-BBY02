@@ -14,13 +14,13 @@ const Landing = ({ user }) => {
     <>
     
     <div id = "main">
+      <video autoPlay muted loop>
+        <source src="/public/images/Landingbg.mp4" />
+      </video>
       <div id = "logo">
-        {/* <img src="/DocuMintFull.png" alt="DocuMint Logo" className="img" />  */}
-        <img src="/DocuMintHorizontal.png" alt="DocuMint Logo" id = 'logodisplay'/> 
-        {/* <img src="/DM_Circle_Small.png" alt="DocuMint Logo" className="img" />  */}
-        {/* <img src="/DM_Circle.png" alt="DocuMint Logo" className="img" />  */}
+        <img src="/images/DocuMintHorizontal.png" alt="DocuMint Logo" id = 'logodisplay'/> 
       </div>
-      <HeroSection />
+      {/* <HeroSection /> */}
     </div>
       <Footer />
     </>

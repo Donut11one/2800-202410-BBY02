@@ -8,6 +8,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import ConnectWalletModal from "../ConnectWalletModal";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/images/stream-bg.jpeg";
 
 const Home = () => {
   const [showWalletModal, setShowWalletModal] = useState(false);

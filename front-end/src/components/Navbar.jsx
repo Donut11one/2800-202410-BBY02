@@ -11,13 +11,16 @@ import {
   faHandshakeAngle,
   faUser,
   faRightFromBracket,
+  faFolderOpen,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Navbar.css";
 import logo from "../assets/images/DocuMintHorizontal.png";
+import useWallet from "../hooks/useWallet"; // Adjust the path as needed
 
-const Navbar = ({ buttonText = "Connect Wallet" }) => {
+const Navbar = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const { walletAddress, connectWallet, getShortenedAddress } = useWallet();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -32,6 +35,8 @@ const Navbar = ({ buttonText = "Connect Wallet" }) => {
 
   useEffect(() => {
     showButton();
+    window.addEventListener("resize", showButton);
+    return () => window.removeEventListener("resize", showButton);
   }, []);
 
   const handleSignOut = () => {
@@ -39,8 +44,6 @@ const Navbar = ({ buttonText = "Connect Wallet" }) => {
       .then(() => console.log("Signed Out"))
       .catch((error) => console.log(error));
   };
-
-  window.addEventListener("resize", showButton);
 
   return (
     <>
@@ -66,9 +69,9 @@ const Navbar = ({ buttonText = "Connect Wallet" }) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="" className="nav-links" onClick={closeMobileMenu}>
-                <FontAwesomeIcon icon={faClipboardQuestion} />
-                FAQs
+              <Link to="/docgalery" className="nav-links" onClick={closeMobileMenu}>
+                <FontAwesomeIcon icon={faFolderOpen} />
+                My Documents
               </Link>
             </li>
             <li className="nav-item">
@@ -83,18 +86,16 @@ const Navbar = ({ buttonText = "Connect Wallet" }) => {
                 Logout
               </button>
             </li>
-
-            <li>
-              <Link
-                to=""
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                Connect Wallet
-              </Link>
-            </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">{buttonText}</Button>}
+          {button && (
+            walletAddress ? (
+              <Button buttonStyle="btn--outline">{`Wallet Connected: ${getShortenedAddress(walletAddress)}`}</Button>
+            ) : (
+              <Button buttonStyle="btn--outline" onClick={connectWallet()}>
+                Connect your wallet!
+              </Button>
+            )
+          )}
         </div>
       </nav>
     </>

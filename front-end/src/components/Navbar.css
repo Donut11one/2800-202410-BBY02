@@ -80,7 +80,8 @@
 .fa-handshake-angle,
 .fa-clipboard-question,
 .fa-user,
-.fa-right-from-bracket {
+.fa-right-from-bracket,
+.fa-folder-open {
   color: rgb(72, 206, 182);
   height: 30px;
   padding-right: 0.5rem;

@@ -12,6 +12,7 @@ import Home from "./components/pages/Home";
 import PasswordReset from "./components/PasswordReset";
 import Wallet from "./components/pages/Wallet";
 import NotFoundPage from "./components/pages/NotFoundPage";
+import Docs from "./components/pages/Docs";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -60,6 +61,9 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/docgalery" element={<Docs />}>
+
+          </Route>
         </Routes>
       </Router>
     </>

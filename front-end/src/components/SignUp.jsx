@@ -101,7 +101,7 @@ const SignUp = ({ onClose }) => {
           />
           <button
             type="submit"
-            className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
+            className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
           >
             Sign Up
           </button>

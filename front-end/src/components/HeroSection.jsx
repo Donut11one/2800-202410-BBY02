@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import { Button } from "./Button";
 import "./HeroSection.css";
@@ -15,6 +15,14 @@ const HeroSection = () => {
 
   const openSignUpModal = () => setShowSignUpModal(true);
   const closeSignUpModal = () => setShowSignUpModal(false);
+
+  useEffect(() => {
+    if (showLoginModal || showSignUpModal) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [showLoginModal, showSignUpModal]);
 
   return (
     <div className="hero-container relative">
@@ -39,6 +47,7 @@ const HeroSection = () => {
           </Button>
         </div>
       </div>
+      {(showLoginModal || showSignUpModal) && <div className="modal-overlay"></div>}
       {showLoginModal && <Login onClose={closeLoginModal} />}
       {showSignUpModal && <SignUp onClose={closeSignUpModal} />}
     </div>

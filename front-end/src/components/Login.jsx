@@ -105,22 +105,22 @@ const Login = ({ onClose }) => {
             autoComplete="current-password"
             className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
           />
-          <br />
-          <p className="text font-bold mb-4" style={{ color: "white" }} onClick={handleReset}>Forgot Password?</p>
+          <button
+            type="submit" onClick={handleReset}
+            className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
+          >
+            Forgot Password?
+          </button>
           <button
             type="submit"
-            className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
-          ></button>
-          <button
-            type="submit"
-            className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
+            className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
           >
             Login
           </button>
         </form>
         <button
           onClick={onClose}
-          className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
+          className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
         >
           Close
         </button>

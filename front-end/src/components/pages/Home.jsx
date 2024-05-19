@@ -103,8 +103,9 @@ const Home = () => {
       <Navbar />
       <div className="home">
         {userName && (
-          <p>Welcome, {userName}!</p>
+          <p className="welcome-message">Welcome, {userName}!</p>
         )}
+        <br />
         <button
           className="btn btn--outline btn--large"
           onClick={openWalletModal}

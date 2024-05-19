@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../fbconfig";
-import { doc, setDoc, getDoc, updateDoc  } from 'firebase/firestore';
+import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import "./Button.css"; // Import button styles
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -106,16 +106,16 @@ const Login = ({ onClose }) => {
             className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
           />
           <button
-            type="submit" onClick={handleReset}
-            className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
-          >
-            Forgot Password?
-          </button>
-          <button
             type="submit"
             className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
           >
             Login
+          </button>
+          <button
+            type="submit" onClick={handleReset}
+            className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
+          >
+            Forgot Password?
           </button>
         </form>
         <button

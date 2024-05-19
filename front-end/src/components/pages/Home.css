@@ -2,3 +2,7 @@
     background-image: url("../../assets/images/stream-bg.jpeg");
     background-size: cover;
 }
+
+.welcome-message {
+    color: white;
+}

@@ -3,7 +3,8 @@ import "./HeroSectionVid.css";
 
 const HeroSectionVid = () => {
   return <div className="containers">
-    <h2>Welcome to the documint</h2>
+    <h2>Welcome to Documint</h2><br/>
+    <em>"Securely manage your documents as unique NFTs, accessible anytime, anywhere."</em>
   </div>;
 };
 

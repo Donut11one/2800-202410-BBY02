@@ -6,7 +6,8 @@
     justify-content: center;
     align-items: center;
     background-image: url("../../assets/images/stream-bg.jpeg");
-    background-position: 0px 2000px;
+    /* background-position: 0px 2000px; */
+    background-size: cover;
 }
 #logo{
     display: flex;
@@ -14,7 +15,8 @@
     align-items: center;
 }
 #logodisplay{
-    width: 100%;
+    width: 60vw;
+ 
 
 }
 

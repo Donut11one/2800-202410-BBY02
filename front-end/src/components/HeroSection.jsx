@@ -32,7 +32,8 @@ const HeroSection = () => {
           <Button
             className="btns mb-4 bg-green-400 hover:bg-green-500"
             buttonStyle="btn--outline"
-            buttonSize="btn--large"
+            buttonSize="btn--medium"
+            // buttonSize="btn--large"
             onClick={openLoginModal}
           >
             LOGIN
@@ -40,7 +41,8 @@ const HeroSection = () => {
           <Button
             className="btns bg-green-400 hover:bg-green-500"
             buttonStyle="btn--outline"
-            buttonSize="btn--large"
+            buttonSize="btn--medium"
+            // buttonSize="btn--large"
             onClick={openSignUpModal}
           >
             SIGN UP

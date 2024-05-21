@@ -1,9 +1,38 @@
 .containers {
-  width: 90%;
-  height: 80%;
+  width: 30%;
+  height: 30%;
+  /* width: 90%;
+  height: 80%; */
 }
 
 .containers h2 {
   color: white;
   text-align: center;
+  font-size: large;
+}
+
+.containers em {
+  color: #fff; 
+  opacity: 1; 
+  visibility: visible; 
+  display: block; 
+  text-align: center;
+  font-size: x-small;
+}
+
+
+@media (max-width: 600px) {
+  .containers h2 {
+    font-size: small; 
+  }
+  .containers em {
+    font-size: xx-small; 
+  }
+}
+
+
+@media (max-width: 600px) {
+  .containers {
+    padding: 20px; 
+  }
 }

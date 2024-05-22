@@ -5,11 +5,13 @@ import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../../assets/helper-hardhat-conf
 import { ethers } from "ethers";
 import { Web3Provider } from "@ethersproject/providers";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 
 const Docs = ({ wallet }) => {
     const [tokenIds, setTokenIds] = useState([]);
     const [tokenURIs, setTokenURIs] = useState([]);
+    const [metadata, setMetadata] = useState([])
 
     useEffect(() => {
         const fetchTokenData = async () => {
@@ -39,6 +41,18 @@ const Docs = ({ wallet }) => {
 
                 // Set tokenURIs state
                 setTokenURIs(tokenURIs);
+
+                const metadataArray = await Promise.all(
+                    tokenURIs.map(async (uri) => {
+                        const response = await axios.get(uri);
+                        return response.data;
+                    })
+                );
+
+                // Log metadata to see the structure
+                console.log(metadataArray);
+                setMetadata(metadataArray)
+
             } catch (error) {
                 console.error("Error fetching token data:", error);
             }
@@ -59,9 +73,10 @@ const Docs = ({ wallet }) => {
             <div>
                 <h2>Owned Tokens</h2>
                 <ul>
-                    {tokenIds.map((id, index) => (
+                    {metadata.map((document, index) => (
                         <li key={index}>
-                            Token ID: {id}, Token URI: {tokenURIs[index]}
+                            <h2>{document.name}</h2>
+                            <img src={document.image} alt="doc image" />
                         </li>
                     ))}
                 </ul>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import filehash from "../runScript.js";
-import mintNFT from "../mintNFT.js";
+//import mintNFT from "../mintNFT.js";
 
 const UploadDocModal = ({ onClose }) => {
   const [name, setName] = useState(""); // State for user's name
@@ -14,7 +14,7 @@ const UploadDocModal = ({ onClose }) => {
       file,
     };
     console.log(data);
-    mintNFT(data);
+    //mintNFT(data);
   };
 
   return (

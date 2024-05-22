@@ -18,6 +18,15 @@ const Home = () => {
   const [showUploadModal, setShowUploadModal] = useState(false);
   const { walletAddress, connectWallet, getShortenedAddress } = useWallet();
 
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      fetchUserName(user.uid);
+    } else {
+      console.error("No user is signed in.");
+    }
+  });
+
   const fetchUserName = async (uid) => {
     try {
       const userDocRef = doc(db, "users", uid);

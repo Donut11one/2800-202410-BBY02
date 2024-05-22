@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import { Button } from "./Button";
 import "./HeroSection.css";
-import HeroSectionVid from "./HeroSectionVid";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
@@ -26,11 +25,10 @@ const HeroSection = () => {
 
   return (
     <div className="hero-container relative">
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <HeroSectionVid />
-        <div className="hero-btns flex flex-col items-center">
+      <div className="absolute  flex flex-col items-center justify-center">
+        <div className="hero-btns flex flex-col md:flex-row items-center">
           <Button
-            className="btns mb-4 bg-green-400 hover:bg-green-500"
+            // className="btns mb-4 bg-green-400 hover:bg-green-500"
             buttonStyle="btn--outline"
             buttonSize="btn--medium"
             // buttonSize="btn--large"
@@ -39,7 +37,7 @@ const HeroSection = () => {
             LOGIN
           </Button>
           <Button
-            className="btns bg-green-400 hover:bg-green-500"
+            // className="btns bg-green-400 hover:bg-green-500"
             buttonStyle="btn--outline"
             buttonSize="btn--medium"
             // buttonSize="btn--large"

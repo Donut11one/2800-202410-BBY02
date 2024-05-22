@@ -13,11 +13,14 @@ import PasswordReset from "./components/PasswordReset";
 import Wallet from "./components/pages/Wallet";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import Docs from "./components/pages/Docs";
+import useWallet from "./hooks/useWallet";
 import HelpPage from "./components/pages/HelpPage";
+import Profile from "./components/pages/Profile"
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
+  const { walletAddress } = useWallet()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -36,7 +39,6 @@ const App = () => {
   if (isFetching) {
     return <h1>Loading...</h1>;
   }
-
   return (
     <>
       <Router>
@@ -46,7 +48,6 @@ const App = () => {
           <Route path="/SignUp" element={<SignUp user={user}></SignUp>} />
           <Route path="/reset" element={<PasswordReset></PasswordReset>} />
           <Route path="/help" element={<HelpPage user={user} />} />
-          <Route path="/Profile" element={<Profile userid={user}></Profile>} />
           <Route path='*' element={<NotFoundPage />} />
           <Route
             path="/home"
@@ -64,7 +65,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="/docgalery" element={<Docs />}>
+          <Route path="/docgalery" element={<ProtectedRoute user={user}><Docs wallet={walletAddress} /></ProtectedRoute>}>
 
           </Route>
         </Routes>

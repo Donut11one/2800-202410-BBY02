@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 
 const useWallet = () => {
     const [walletAddress, setWalletAddress] = useState("");
-    const navigate = useNavigate();
+    const [walletConnected, setWalletConnected] = useState(false);
+    const walletAddressRef = useRef("");
 
     useEffect(() => {
         const addWalletListener = async () => {
@@ -12,17 +12,21 @@ const useWallet = () => {
                     if (accounts.length > 0) {
                         console.log("Account changed:", accounts[0]);
                         setWalletAddress(accounts[0]);
+                        walletAddressRef.current = accounts[0];
                     } else {
                         console.log("No accounts found. Redirecting to home.");
                         setWalletAddress("");
-                        navigate("/home");
+                        walletAddressRef.current = "";
+                        setWalletConnected(false);
                     }
                 });
 
                 window.ethereum.on("disconnect", (error) => {
                     console.log("Wallet disconnected:", error);
                     setWalletAddress("");
-                    navigate("/home");
+                    walletAddressRef.current = "";
+                    setWalletConnected(false);
+
                 });
             } else {
                 console.log("Please install Metamask");
@@ -37,7 +41,8 @@ const useWallet = () => {
                     });
                     if (accounts.length > 0) {
                         setWalletAddress(accounts[0]);
-                        console.log(accounts[0]);
+                        walletAddressRef.current = accounts[0];
+                        setWalletConnected(true);
                     } else {
                         console.log("Please connect your wallet.");
                     }
@@ -51,7 +56,7 @@ const useWallet = () => {
 
         getCurrentWalletConnected();
         addWalletListener();
-    }, [navigate]);
+    }, []);
 
     const connectWallet = async () => {
         if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
@@ -60,6 +65,8 @@ const useWallet = () => {
                     method: "eth_requestAccounts",
                 });
                 setWalletAddress(accounts[0]);
+                walletAddressRef.current = accounts[0];
+                setWalletConnected(true);
                 console.log(accounts[0]);
             } catch (err) {
                 console.error(err.message);
@@ -76,6 +83,7 @@ const useWallet = () => {
 
     return {
         walletAddress,
+        walletConnected,
         connectWallet,
         getShortenedAddress,
     };

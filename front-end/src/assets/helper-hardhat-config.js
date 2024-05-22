@@ -649,7 +649,7 @@ const CONTRACT_ABI = [
     }
 ]
 
-module.exports = {
+export {
     networkConfig,
     developmentChains,
     VERIFICATION_BLOCK_CONFIRMATIONS,

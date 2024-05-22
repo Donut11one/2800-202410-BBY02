@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\miste\\OneDrive - BCIT\\BCIT\\2800_2024\\2800Project\\contracts\\DocuMinter.sol": {
-      "lastModificationDate": 1715981279836,
-      "contentHash": "0545c528dac518e89f261ff9324f73ab",
+      "lastModificationDate": 1716395183790,
+      "contentHash": "62215cf52de59719b5b450c7bb90a820",
       "sourceName": "contracts/DocuMinter.sol",
       "solcConfig": {
         "version": "0.8.20",

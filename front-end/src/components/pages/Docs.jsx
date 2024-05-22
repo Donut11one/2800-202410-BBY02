@@ -18,8 +18,6 @@ const Docs = ({ wallet }) => {
                 const provider = new Web3Provider(window.ethereum);
                 const signer = provider.getSigner();
 
-                // Contract address and ABI
-
 
                 // Instantiate the contract
                 const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);

@@ -3,7 +3,8 @@
     height : 100vh;
     width: 99vw;
     flex-direction:column;
-    justify-content: center;
+    padding-top: 1rem;
+    /* justify-content: center; */
     align-items: center;
     background-image: url("../../assets/images/stream-bg.jpeg");
     /* background-position: 0px 2000px; */
@@ -15,13 +16,11 @@
     align-items: center;
 }
 #logodisplay{
-    width: 60vw;
- 
-
+    width: 50vw;
 }
 
 body.modal-open {
-    overflow: hidden;
+    /* overflow: hidden; */
   }
   
   .modal-overlay {

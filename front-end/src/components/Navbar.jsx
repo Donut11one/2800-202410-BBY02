@@ -63,7 +63,7 @@ const Navbar = () => {
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
-              <Link to="" className="nav-links" onClick={closeMobileMenu}>
+              <Link to="/help" className="nav-links" onClick={closeMobileMenu}>
                 <FontAwesomeIcon icon={faHandshakeAngle} />
                 Help
               </Link>

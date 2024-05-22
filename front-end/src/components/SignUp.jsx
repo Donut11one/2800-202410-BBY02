@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../fbconfig";
 import { doc, setDoc } from "firebase/firestore";
-import "./Button.css"; // Import button styles
+// import "./Button.css"; // Import button styles
 
 const SignUp = ({ onClose }) => {
   const [name, setName] = useState(""); // State for user's name

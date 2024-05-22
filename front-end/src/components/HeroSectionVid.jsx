@@ -1,5 +1,5 @@
 import React from "react";
-import "./HeroSectionVid.css";
+// import "./HeroSectionVid.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFileShield,

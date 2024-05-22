@@ -13,7 +13,7 @@ import {
   faRightFromBracket,
   faFolderOpen,
 } from "@fortawesome/free-solid-svg-icons";
-import "./Navbar.css";
+// import "./Navbar.css";
 import logo from "../assets/images/DocuMintHorizontal.png";
 import useWallet from "../hooks/useWallet"; // Adjust the path as needed
 

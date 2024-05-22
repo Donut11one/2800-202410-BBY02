@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import { Button } from "./Button";
-import "./HeroSection.css";
+// import "./HeroSection.css";
 import Login from "./Login";
 import SignUp from "./SignUp";
 

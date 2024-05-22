@@ -2,7 +2,7 @@ import React from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../fbconfig";
 import { useNavigate } from "react-router-dom";
-import "./PasswordReset.css";
+// import "./PasswordReset.css";
 import passwordResetLogo from "../assets/images/DocuMintHorizontal.png";
 
 const PasswordReset = () => {

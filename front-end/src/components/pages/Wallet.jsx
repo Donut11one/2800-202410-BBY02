@@ -49,6 +49,7 @@ const Wallet = () => {
           Upload document
         </button>
         {showUploadModal && <UploadDocModal onClose={closeUploadModal} />}
+
       </div>
       <Footer />
     </>

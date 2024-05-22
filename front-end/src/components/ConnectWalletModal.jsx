@@ -1,5 +1,5 @@
 import React from "react";
-import "./ConnectWalletModal.css";
+import "../style.css";
 
 const ConnectWalletModal = ({ onClose, onWalletConnect }) => {
   return (

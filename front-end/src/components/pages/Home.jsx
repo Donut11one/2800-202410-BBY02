@@ -10,7 +10,7 @@ import logo from "../../assets/images/stream-bg.jpeg";
 import UploadDocModal from "../UploadDocModal";
 import addWalletListener from "../../hooks/useWallet";
 import useWallet from "../../hooks/useWallet";
-import Profile from "../Profile";
+import Profile from "./Profile";
 
 const Home = () => {
   const [showWalletModal, setShowWalletModal] = useState(false);

@@ -7,12 +7,8 @@ import pinFileToIPFS from "./pinFileToIPFS.js";
 //Runs the pinFileToIPFS and returns the hash value of the image
 const filehash = async (path) => {
     const temp = await pinFileToIPFS(path);
-    console.log(temp);
-    console.log("sucessfully get hash from IPFS")
     var imageurl = "https://ipfs.io/ipfs/" +  temp;
-    console.log(imageurl);
-    console.log("Sucessfully convert to url"); 
-    // mintNFT(imageurl);
+    return imageurl;
 }
 
 export default filehash;

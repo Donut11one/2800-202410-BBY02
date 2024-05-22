@@ -6,6 +6,7 @@ const pinFileToIPFS = async (file) => {
     const pinataEndpoint = process.env.REACT_APP_PINATA_ENDPOINT;
     const pinataApiKey = process.env.REACT_APP_PINATA_API_KEY;
     const pinataApiSecret = process.env.REACT_APP_PINATA_API_SECRET;
+    console.log(file);
 
     const formatData = new FormData();
     formatData.append("file", file);

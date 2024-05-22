@@ -17,10 +17,11 @@ import "../style.css";
 import logo from "../assets/images/DocuMintHorizontal.png";
 import useWallet from "../hooks/useWallet"; // Adjust the path as needed
 
-const Navbar = () => {
+const Navbar = ({ClickFn}) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const { walletAddress, connectWallet, getShortenedAddress } = useWallet();
+
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -75,17 +76,19 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="" className="nav-links" onClick={closeMobileMenu}>
+              <Link to="" className="nav-links" onClick={ClickFn}>
                 <FontAwesomeIcon icon={faUser} />
                 Profile
               </Link>
             </li>
+            
             <li className="nav-item">
               <button className="nav-links" onClick={handleSignOut}>
                 <FontAwesomeIcon icon={faRightFromBracket} />
                 Logout
               </button>
             </li>
+
           </ul>
           {button && (
             walletAddress ? (

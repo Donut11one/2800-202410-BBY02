@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../fbconfig";
 import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
-import "./Button.css"; // Import button styles
+import "../style.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = ({ onClose }) => {

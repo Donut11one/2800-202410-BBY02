@@ -5,6 +5,7 @@ import logo from "../../assets/images/DocuMintHorizontal.png";
 import Footer from "../Footer";
 import { Navigate } from "react-router-dom";
 import "./Landing.css";
+import HeroSectionVid from "../HeroSectionVid";
 const Landing = ({ user }) => {
   if (user) {
     return <Navigate to="/home"></Navigate>;
@@ -18,6 +19,7 @@ const Landing = ({ user }) => {
         <img src={logo} alt="DocuMint Logo" id = 'logodisplay'/> 
 
       </div>
+      <HeroSectionVid />
       <HeroSection />
     </div>
       <Footer />

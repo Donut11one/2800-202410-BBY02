@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faTimes,
-  faClipboardQuestion,
   faHandshakeAngle,
   faUser,
   faRightFromBracket,
@@ -91,7 +90,7 @@ const Navbar = () => {
             walletAddress ? (
               <Button buttonStyle="btn--outline">{`Wallet Connected: ${getShortenedAddress(walletAddress)}`}</Button>
             ) : (
-              <Button buttonStyle="btn--outline" onClick={connectWallet()}>
+              <Button buttonStyle="btn--outline" onClick={connectWallet}>
                 Connect your wallet!
               </Button>
             )

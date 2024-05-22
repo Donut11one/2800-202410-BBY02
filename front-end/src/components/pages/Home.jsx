@@ -11,12 +11,16 @@ import logo from "../../assets/images/stream-bg.jpeg";
 import UploadDocModal from "../UploadDocModal";
 import addWalletListener from "../../hooks/useWallet";
 import useWallet from "../../hooks/useWallet";
+import Profile from "../Profile";
 
 const Home = () => {
   const [showWalletModal, setShowWalletModal] = useState(false);
   const [userName, setUserName] = useState("");
   const [showUploadModal, setShowUploadModal] = useState(false);
   const { walletAddress, connectWallet, getShortenedAddress } = useWallet();
+  const [showProfileModal, setShowProfileModal] = useState(false);
+
+  const openProfileModal = () => setShowProfileModal(true);
 
   const fetchUserName = async (uid) => {
     try {
@@ -41,7 +45,8 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar ClickFn={openProfileModal}/>
+      {showProfileModal && <Profile />}
       <div className="home">
         {userName && (
           <p className="welcome-message">Welcome, {userName}!</p>

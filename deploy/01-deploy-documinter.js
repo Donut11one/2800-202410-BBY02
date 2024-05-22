@@ -3,6 +3,7 @@ const { developmentChains, VERIFICATION_BLOCK_CONFIRMATIONS } = require("../help
 const { verify } = require("../utils/verify")
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
+    console.log("BIIIIIIIIILDA")
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
     const waitBlockConfirmations = developmentChains.includes(network.name)
@@ -11,6 +12,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
     log("----------------------------------------------------")
     const arguments = []
+    console.log(`---------------${network}-----------------${arguments}`)
     const nftMarketplace = await deploy("DocuMinter", {
         from: deployer,
         args: arguments,

@@ -6,7 +6,6 @@ import "../../App.css";
 import "./Home.css";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import ConnectWalletModal from "../ConnectWalletModal";
 import logo from "../../assets/images/stream-bg.jpeg";
 import UploadDocModal from "../UploadDocModal";
 import addWalletListener from "../../hooks/useWallet";
@@ -46,8 +45,6 @@ const Home = () => {
     }
   };
 
-  const openWalletModal = () => setShowWalletModal(true);
-  const closeWalletModal = () => setShowWalletModal(false);
 
   const openUploadModal = () => setShowUploadModal(true);
   const closeUploadModal = () => setShowUploadModal(false);
@@ -63,7 +60,7 @@ const Home = () => {
         <br />
         <button
           className="btn btn--outline btn--large"
-          onClick={openWalletModal}
+          onClick={connectWallet}
         >
           {walletAddress && walletAddress.length > 0
             ? `Connected: ${getShortenedAddress(walletAddress)}`

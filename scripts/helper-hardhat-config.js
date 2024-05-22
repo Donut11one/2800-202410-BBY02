@@ -2,7 +2,7 @@ const VERIFICATION_BLOCK_CONFIRMATIONS = 6
 const developmentChains = ["hardhat", "localhost"]
 const networkConfig = {
     default: {
-        name: "hardhat",
+        name: "sepolia",
         keepersUpdateInterval: "30",
     },
     31337: {
@@ -27,7 +27,7 @@ const networkConfig = {
     },
 }
 
-const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+const CONTRACT_ADDRESS = "0x7f18DDa14Dc4A6240A139AB71d9d2d880ce9FdBA"
 
 module.exports = {
     networkConfig,

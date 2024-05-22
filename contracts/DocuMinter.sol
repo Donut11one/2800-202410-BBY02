@@ -27,20 +27,24 @@ contract DocuMinter is Ownable, ERC721 {
     //assumes that token ID exists. For improvement needs validation that Id exists
     function tokenURI(
         uint256 tokenId
-    ) public view virtual override onlyOwner returns (string memory) {
-        string memory _tokenURI = _tokenURIs[tokenId];
-        string memory base = _baseURIextended;
-        // If there is no base URI, return the token URI.
-        if (bytes(base).length == 0) {
-            return _tokenURI;
-        }
+    ) public view virtual override returns (string memory) {
+        if (msg.sender == ownerOf(tokenId)) {
+            string memory _tokenURI = _tokenURIs[tokenId];
+            string memory base = _baseURIextended;
+            // If there is no base URI, return the token URI.
+            if (bytes(base).length == 0) {
+                return _tokenURI;
+            }
 
-        // If both are set, concatenate the baseURI and tokenURI (via abi.encodePacked).
-        if (bytes(_tokenURI).length > 0) {
-            return string(abi.encodePacked(base, _tokenURI));
+            // If both are set, concatenate the baseURI and tokenURI (via abi.encodePacked).
+            if (bytes(_tokenURI).length > 0) {
+                return string(abi.encodePacked(base, _tokenURI));
+            }
+            // If there is a baseURI but no tokenURI, concatenate the tokenID to the baseURI.
+            return string(abi.encodePacked(base, tokenId.toString()));
+        } else {
+            revert DocuMinter__NotAuthorizedToOperate();
         }
-        // If there is a baseURI but no tokenURI, concatenate the tokenID to the baseURI.
-        return string(abi.encodePacked(base, tokenId.toString()));
     }
 
     function setBaseURI(string memory baseURI_) external onlyOwner {

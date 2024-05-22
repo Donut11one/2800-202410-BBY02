@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../fbconfig";
 import { doc, setDoc } from "firebase/firestore";
-import "./Button.css"; // Import button styles
+import "../style.css"; // Import button styles
 
 const SignUp = ({ onClose }) => {
   const [name, setName] = useState(""); // State for user's name
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordHint, setPasswordHint] = useState(""); 
+
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -44,6 +46,16 @@ const SignUp = ({ onClose }) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error("Error:", errorCode, errorMessage);
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const input = e.target.value;
+    setPassword(input);
+    if (input.length < 6) {
+      setPasswordHint('Password must be at least 6 characters long.');
+    } else {
+      setPasswordHint('');
     }
   };
 
@@ -94,11 +106,12 @@ const SignUp = ({ onClose }) => {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             required
             autoComplete="new-password"
             className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
           />
+          {passwordHint && <p className="text-white text-xs mt-1">{passwordHint}</p>}
           <button
             type="submit"
             className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Footer.css";
+import "../style.css";
 import logo from "../assets/images/DocuMintVertical.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,13 +15,15 @@ import {
 const Footer = () => {
   return (
     <div className="footer-container">
-      <p>Terms | Privacy | Docs | Feedback</p>
+      {/* <p>Terms | Privacy | Docs | Feedback</p> */}
       <section className="social-media">
         <div className="social-media-wrap">
           <div className="documint-footer-logo">
             <img src={logo} alt="Logo" />
           </div>
+          
           <small className="website-rights">DocuMint © 2024</small>
+          <p>Terms | Privacy | Docs | Feedback</p>
           <div className="social-icons">
             <Link
               className="social-icon-link"

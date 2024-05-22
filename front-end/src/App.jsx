@@ -14,6 +14,7 @@ import Wallet from "./components/pages/Wallet";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import Docs from "./components/pages/Docs";
 import useWallet from "./hooks/useWallet";
+import HelpPage from "./components/pages/HelpPage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -46,6 +47,8 @@ const App = () => {
           <Route path="/Login" element={<Login user={user}></Login>} />
           <Route path="/SignUp" element={<SignUp user={user}></SignUp>} />
           <Route path="/reset" element={<PasswordReset></PasswordReset>} />
+          <Route path="/help" element={<HelpPage user={user} />} />
+          <Route path="/Profile" element={<Profile userid={user}></Profile>} />
           <Route path='*' element={<NotFoundPage />} />
           <Route
             path="/home"

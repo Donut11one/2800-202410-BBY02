@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from "./Button";
-import { db, auth } from "../fbconfig";
+import { Button } from "../Button";
+import { db, auth } from "../../fbconfig";
 import { doc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from "firebase/auth";
 

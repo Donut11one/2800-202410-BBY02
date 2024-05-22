@@ -19,10 +19,9 @@ const pinFileToIPFS = async (file) => {
                 'Content-Type': 'multipart/form-data',
             },
         });
-        console.log('Successfully pinned file to IPFS : ', response.data);
         return response.data.IpfsHash;
     } catch (err) {
-        console.log('Error occurred while pinning file to IPFS: ', err);
+        alert('Error occurred while pinning file to IPFS: ', err);
     }
 };
 

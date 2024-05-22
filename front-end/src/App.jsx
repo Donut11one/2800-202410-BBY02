@@ -14,6 +14,7 @@ import Wallet from "./components/pages/Wallet";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import Docs from "./components/pages/Docs";
 import HelpPage from "./components/pages/HelpPage";
+import Profile from "./components/pages/Profile"
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -36,7 +37,6 @@ const App = () => {
   if (isFetching) {
     return <h1>Loading...</h1>;
   }
-
   return (
     <>
       <Router>

@@ -1,9 +1,53 @@
-.modal{
-    background-color:black;
+:root {
+    --primary: rgb(47, 218, 203);
 }
-.btn--outline1{
-    padding: 4px 8px; 
-    font-size: 12px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
+
+.modal {
+    background-color: black;
+}
+
+.btn--outline1 {
+    padding: 4px 8px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.doc-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    padding: 40px;
+    gap: 20px;
+}
+
+.doc-card {
+    background-color: var(--primary);
+    position: relative;
+    border-radius: 10px;
+    width: 350px;
+    height: 440px;
+    padding: 5px;
+}
+
+.doc-image {
+    max-width: 100%;
+}
+
+.doc-controls {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    padding: 3px;
+    margin: 0;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.doc-controls button {
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
 }

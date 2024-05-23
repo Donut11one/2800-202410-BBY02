@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../fbconfig";
-import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import "../style.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null); // State to track user authentication
+  const [user, setUser] = useState(null); 
+  const [error, setError] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setError("");
     if (!email || !password) {
-      console.log("Input field empty");
+      setError("Email and Password are required.");
       return;
     }
     signInWithEmailAndPassword(auth, email, password)
@@ -49,6 +51,7 @@ const Login = ({ onClose }) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error("Error:", errorCode, errorMessage);
+        setError("Invalid email or password.");
       });
   };
 
@@ -84,6 +87,7 @@ const Login = ({ onClose }) => {
     <div className="modal flex items-center justify-center" style={{ zIndex: 100 }}>
       <div className="modal-content bg-emerald-950 rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>Login</h2>
+        {error && <div className="text-red-500 mb-4">{error}</div>}
         <form id="login" onSubmit={handleLogin}>
           <input
             type="email"

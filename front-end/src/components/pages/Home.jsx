@@ -46,20 +46,35 @@ const Home = () => {
     }
   };
 
-
   const openUploadModal = () => setShowUploadModal(true);
   const closeUploadModal = () => setShowUploadModal(false);
 
   return (
     <>
-      <Navbar ClickFn={openProfileModal}/>
+      <Navbar ClickFn={openProfileModal} />
       {showProfileModal && <Profile />}
       <div className="home">
-        {userName && (
-          <p className="welcome-message">Welcome, {userName}!</p>
+        {userName && <p className="welcome-message">Welcome, {userName}!</p>}
+        {walletAddress && walletAddress.length > 0 ? (
+          <button
+            className="btn btn--large btn--primary"
+            onClick={openUploadModal}
+          >
+            Upload document
+          </button>
+        ) : (
+          <>
+            <WalletSetupInstruction />
+            <button
+              className="btn btn--outline btn--large"
+              onClick={connectWallet}
+            >
+              Connect Wallet
+            </button>
+          </>
         )}
-        {!(walletAddress && walletAddress.length > 0) && <WalletSetupInstruction />}
-        <button
+
+        {/* <button
           className="btn btn--outline btn--large"
           onClick={connectWallet}
         >
@@ -74,7 +89,7 @@ const Home = () => {
           >
             Upload document
           </button>
-        )}
+        )} */}
         {showUploadModal && <UploadDocModal onClose={closeUploadModal} />}
       </div>
       <Footer />

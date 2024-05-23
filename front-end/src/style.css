@@ -1,8 +1,10 @@
-/* button */
 :root {
-  --primary: rgb(47, 218, 203);
+  --primary: rgb(72, 206, 182);
+  --secondary: rgb(4, 49, 54);
+  --gradient: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%);
 }
 
+/* button */
 .btn {
   padding: 8px 20px;
   border-radius: 2px;
@@ -287,7 +289,9 @@
   color: rgb(72, 206, 182);
   background-color: #043136;
   border-radius: 50%;
-  animation: glow 1.5s infinite alternate;
+  box-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #043136,
+      0 0 80px #043136, 0 0 90px #043136, 0 0 110px #043136, 0 0 170px #043136;
+  /* animation: glow 1.5s infinite alternate; */
 }
 
 @media (max-width: 600px) {
@@ -717,4 +721,9 @@ input:checked + label .instruction-desc {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+/* UploadDocModal */
+.upload-doc-modal {
+  background: var(--gradient);
 }

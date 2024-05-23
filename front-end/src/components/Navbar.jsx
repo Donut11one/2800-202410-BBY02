@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../fbconfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +20,7 @@ const Navbar = ({ClickFn}) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const { walletAddress, connectWallet, getShortenedAddress } = useWallet();
+  const navigate = useNavigate();
 
 
   const handleClick = () => setClick(!click);
@@ -41,7 +42,10 @@ const Navbar = ({ClickFn}) => {
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => console.log("Signed Out"))
+      .then(() => {
+        console.log("Signed Out");
+        navigate("/");
+      })
       .catch((error) => console.log(error));
   };
 
@@ -80,7 +84,7 @@ const Navbar = ({ClickFn}) => {
                 Profile
               </Link>
             </li>
-            
+
             <li className="nav-item">
               <button className="nav-links" onClick={handleSignOut}>
                 <FontAwesomeIcon icon={faRightFromBracket} />

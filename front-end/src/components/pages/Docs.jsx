@@ -14,11 +14,15 @@ import {
     faCircleInfo
 } from "@fortawesome/free-solid-svg-icons";
 
+import useWallet from "../../hooks/useWallet";
 
+//Add required sepolia network for metamask
 const Docs = ({ wallet }) => {
     const [tokenIds, setTokenIds] = useState([]);
     const [tokenURIs, setTokenURIs] = useState([]);
     const [metadata, setMetadata] = useState([]);
+
+    const { networkSupported } = useWallet()
 
     const burnDoc = (_id) => {
         console.log("BURN " + _id)
@@ -83,24 +87,27 @@ const Docs = ({ wallet }) => {
     return (
         <>
             <Navbar />
-            <p>Wallet Address: {wallet}</p>
-            <div>
-                <h2>Owned Tokens</h2>
-                <div className="doc-wrapper">
-                    {metadata.map((document, index) => (
-                        <div className="doc-card" key={index}>
-                            <h2>{document.name}</h2>
-                            <h2>Document's Id: {tokenIds[index]}</h2>
-                            <img src={document.image} alt="doc image" className="doc-image" />
-                            <div className="doc-controls">
-                                <button onClick={() => { transferDoc(tokenIds[index]) }}>Transfer <FontAwesomeIcon icon={faArrowRightArrowLeft} /></button>
-                                <button onClick={() => { burnDoc(tokenIds[index]) }}>Burn <FontAwesomeIcon icon={faFire} /></button>
-                                <button>Details <FontAwesomeIcon icon={faCircleInfo} /></button>
+            {networkSupported ? (
+                <div>
+                    <h2>Owned Tokens</h2>
+                    <div className="doc-wrapper">
+                        {metadata.map((document, index) => (
+                            <div className="doc-card" key={index}>
+                                <h2>{document.name}</h2>
+                                <h2>Document's Id: {tokenIds[index]}</h2>
+                                <img src={document.image} alt="doc image" className="doc-image" />
+                                <div className="doc-controls">
+                                    <button onClick={() => { transferDoc(tokenIds[index]) }}>Transfer <FontAwesomeIcon icon={faArrowRightArrowLeft} /></button>
+                                    <button onClick={() => { burnDoc(tokenIds[index]) }}>Burn <FontAwesomeIcon icon={faFire} /></button>
+                                    <button>Details <FontAwesomeIcon icon={faCircleInfo} /></button>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+                        ))}
+                    </div>
+                </div>) : (<div>
+                    <h2>Unsupported Network</h2>
+                    <p>Please connect to the Sepolia network to use this application.</p>
+                </div>)}
         </>
     );
 }

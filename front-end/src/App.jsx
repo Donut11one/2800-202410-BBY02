@@ -10,7 +10,6 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Home from "./components/pages/Home";
 import PasswordReset from "./components/PasswordReset";
-import Wallet from "./components/pages/Wallet";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import Docs from "./components/pages/Docs";
 import useWallet from "./hooks/useWallet";
@@ -55,14 +54,6 @@ const App = () => {
             element={
               <ProtectedRoute user={user}>
                 <Home></Home>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/wallet/:address"
-            element={
-              <ProtectedRoute user={user}>
-                <Wallet></Wallet>
               </ProtectedRoute>
             }
           />

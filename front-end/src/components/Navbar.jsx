@@ -16,7 +16,7 @@ import "../style.css";
 import logo from "../assets/images/DocuMintHorizontal.png";
 import useWallet from "../hooks/useWallet"; // Adjust the path as needed
 
-const Navbar = ({ClickFn}) => {
+const Navbar = ({ ClickFn }) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const { walletAddress, connectWallet, getShortenedAddress } = useWallet();

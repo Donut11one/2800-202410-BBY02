@@ -79,7 +79,7 @@ const Navbar = ({ClickFn}) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="" className="nav-links" onClick={ClickFn}>
+              <Link to="/Profile" className="nav-links" onClick={ClickFn}>
                 <FontAwesomeIcon icon={faUser} />
                 Profile
               </Link>

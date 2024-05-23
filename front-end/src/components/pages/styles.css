@@ -2,15 +2,16 @@
     --primary: rgb(47, 218, 203);
 }
 
-.modal {
+/* .modal {
     background-color: black;
-}
+} */
 
 .btn--outline1 {
     padding: 4px 8px;
     font-size: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
+
 }
 
 .doc-wrapper {
@@ -50,4 +51,10 @@
     background-color: white;
     padding: 5px;
     border-radius: 10px;
+}
+
+
+
+.small-text {
+    font-size: 12px; /* Smaller text for less important information */
 }

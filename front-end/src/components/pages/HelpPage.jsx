@@ -6,7 +6,6 @@ import { Navigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import "./Home.css";
-import Profile from "./Profile";
 import Carousel from "../Carousel";
 
 
@@ -16,9 +15,7 @@ const HelpPage = () => {
     const [user, setUser] = useState(null);
     const [userName, setUserName] = useState("");
     const [loading, setLoading] = useState(true);
-    const [showProfileModal, setShowProfileModal] = useState(false);
 
-    const openProfileModal = () => setShowProfileModal(true);
 
     useEffect(() => {
         const auth = getAuth();
@@ -75,8 +72,7 @@ const HelpPage = () => {
 
     return (
         <>
-            <Navbar ClickFn={openProfileModal} />
-            {showProfileModal && <Profile />}
+            <Navbar />
             <div className="home min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
                 <Carousel />
                 <br/>

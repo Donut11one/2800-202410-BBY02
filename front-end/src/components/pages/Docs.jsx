@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import { Navigate } from "react-router-dom";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../../assets/helper-hardhat-config";
 import { Result, ethers } from "ethers";
@@ -15,6 +16,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import useWallet from "../../hooks/useWallet";
+
+
 
 //Add required sepolia network for metamask
 const Docs = ({ wallet }) => {
@@ -88,7 +91,7 @@ const Docs = ({ wallet }) => {
         <>
             <Navbar />
             {networkSupported ? (
-                <div>
+                <div id = "DocumentMain">
                     <h2>Owned Tokens</h2>
                     <div className="doc-wrapper">
                         {metadata.map((document, index) => (
@@ -108,6 +111,7 @@ const Docs = ({ wallet }) => {
                     <h2>Unsupported Network</h2>
                     <p>Please connect to the Sepolia network to use this application.</p>
                 </div>)}
+                <Footer />
         </>
     );
 }

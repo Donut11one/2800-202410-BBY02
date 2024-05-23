@@ -58,3 +58,10 @@
 .small-text {
     font-size: 12px; /* Smaller text for less important information */
 }
+/* Docs.jsx */
+#DocumentMain{
+    height: 100%;
+    background-image: url("../../assets/images/stream-bg.jpeg");
+    background-size: 400%;
+    background-position: 0px -3200px;
+}

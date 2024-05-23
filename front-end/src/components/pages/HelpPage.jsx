@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import "./Home.css";
+import Profile from "./Profile";
 
 
 const HelpPage = () => {
@@ -14,6 +15,9 @@ const HelpPage = () => {
     const [user, setUser] = useState(null);
     const [userName, setUserName] = useState("");
     const [loading, setLoading] = useState(true);
+    const [showProfileModal, setShowProfileModal] = useState(false);
+
+    const openProfileModal = () => setShowProfileModal(true);
 
     useEffect(() => {
         const auth = getAuth();
@@ -70,7 +74,8 @@ const HelpPage = () => {
 
     return (
         <>
-            <Navbar />
+            <Navbar ClickFn={openProfileModal} />
+            {showProfileModal && <Profile />}
             <div className="home min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
                 <h2 className="text-2xl font-bold text-white mb-6">Contact Us</h2>
                 <form className="bg-emerald-950 rounded-lg shadow-lg p-6" onSubmit={handleSubmit}>

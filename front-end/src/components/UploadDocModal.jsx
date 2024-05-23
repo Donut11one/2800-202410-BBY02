@@ -1,21 +1,50 @@
-import React, { useState } from "react";
+import { ethers } from "ethers";
+import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../assets/helper-hardhat-config.js";
+import { Web3Provider } from "@ethersproject/providers";
+
+import { React,  useState } from "react";
 import filehash from "../runScript.js";
-import mintNFT from "../mintNFT.js";
 
 const UploadDocModal = ({ onClose }) => {
   const [name, setName] = useState(""); // State for user's name
   const [description, setDescription] = useState(""); // State for description
-  const [file, setFile] = useState(""); // State for file
+  const [image, setImage] = useState(""); // State for file
 
-  const handleSubmit = () => {
-    const data = {
+  const handleSubmit = async () => {
+    const metadata = {
       name,
       description,
-      file,
+      image,
     };
-    console.log(data);
-    mintNFT(data);
+
+
+    const str = JSON.stringify(metadata);
+    const fileblob = new File([str], {
+      name: "MetaJson"
+    });
+
+    const dataurl = await filehash(fileblob);
+    console.log(dataurl);
+    mintNFT(dataurl);
   };
+
+  const mintNFT = async (jsondata) => {
+    try {
+      // Connect to Ethereum provider
+      const provider = new Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+
+      // Instantiate the contract
+      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+
+      // Call the smart contract function mintDoc to mint document
+      const tokenIdsOwned = await contract.mintDoc(jsondata);
+
+
+    } catch (error) {
+      console.error("Error fetching token data:", error);
+    }
+  }
 
   return (
     <div className="flex items-center justify-center" style={{ zIndex: 100 }}>
@@ -42,7 +71,7 @@ const UploadDocModal = ({ onClose }) => {
             <input
               type="file"
               id="fileupload"
-              onChange={async (e) => setFile(await filehash(e.target.files[0]))}
+              onChange={async (e) => setImage(await filehash(e.target.files[0]))}
             />
             <button type="button" onClick={handleSubmit}>
               Mint Document

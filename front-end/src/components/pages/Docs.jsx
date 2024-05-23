@@ -2,16 +2,31 @@ import React from "react";
 import Navbar from "../Navbar";
 import { Navigate } from "react-router-dom";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../../assets/helper-hardhat-config";
-import { ethers } from "ethers";
+import { Result, ethers } from "ethers";
 import { Web3Provider } from "@ethersproject/providers";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faFire,
+    faArrowRightArrowLeft,
+    faCircleInfo
+} from "@fortawesome/free-solid-svg-icons";
 
 
 const Docs = ({ wallet }) => {
     const [tokenIds, setTokenIds] = useState([]);
     const [tokenURIs, setTokenURIs] = useState([]);
-    const [metadata, setMetadata] = useState([])
+    const [metadata, setMetadata] = useState([]);
+
+    const burnDoc = (_id) => {
+        console.log("BURN " + _id)
+    }
+
+    const transferDoc = (id) => {
+        console.log("transfer " + id)
+    }
 
     useEffect(() => {
         const fetchTokenData = async () => {
@@ -28,7 +43,9 @@ const Docs = ({ wallet }) => {
                 const tokenIdsOwned = await contract.owns(wallet);
 
                 // Set tokenIds state
-                setTokenIds(tokenIdsOwned);
+                console.log(tokenIdsOwned)
+                setTokenIds(Object.values(tokenIdsOwned).map((id) => id.toString()));
+                console.log(tokenIds);
 
                 // Call the smart contract function tokenURI(id) for each token
                 const tokenURIs = await Promise.all(
@@ -63,21 +80,26 @@ const Docs = ({ wallet }) => {
         // Redirect to the home page if wallet is not connected
         return <Navigate to="/home" />
     }
-    console.log("document " + wallet)
     return (
         <>
             <Navbar />
             <p>Wallet Address: {wallet}</p>
             <div>
                 <h2>Owned Tokens</h2>
-                <ul>
+                <div className="doc-wrapper">
                     {metadata.map((document, index) => (
-                        <li key={index}>
+                        <div className="doc-card" key={index}>
                             <h2>{document.name}</h2>
-                            <img src={document.image} alt="doc image" />
-                        </li>
+                            <h2>Document's Id: {tokenIds[index]}</h2>
+                            <img src={document.image} alt="doc image" className="doc-image" />
+                            <div className="doc-controls">
+                                <button onClick={() => { transferDoc(tokenIds[index]) }}>Transfer <FontAwesomeIcon icon={faArrowRightArrowLeft} /></button>
+                                <button onClick={() => { burnDoc(tokenIds[index]) }}>Burn <FontAwesomeIcon icon={faFire} /></button>
+                                <button>Details <FontAwesomeIcon icon={faCircleInfo} /></button>
+                            </div>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
         </>
     );

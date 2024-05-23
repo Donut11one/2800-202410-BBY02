@@ -72,10 +72,10 @@ const HelpPage = () => {
         <>
             <Navbar />
             <div className="home min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
-                <h2 className="text-2xl font-bold mb-6">Contact Us</h2>
-                <form className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg" onSubmit={handleSubmit}>
+                <h2 className="text-2xl font-bold text-white mb-6">Contact Us</h2>
+                <form className="bg-emerald-950 rounded-lg shadow-lg p-6" onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label className="block text-gray-700 mb-2">Message</label>
+                        <label className="block text-white mb-2">Message</label>
                         <textarea
                             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={message}
@@ -85,16 +85,16 @@ const HelpPage = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                        className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
                     >
                         Submit
                     </button>
                 </form>
-                {success && <p className="mt-4 text-green-500">Thank you for your message. We will get back to you soon!</p>}
+                {success && <p className="mt-4 text-lime-300">Thank you for your message. We will get back to you soon!</p>}
                 <div className="mt-6 text-center">
-                    <p>Or reach out to us directly:</p>
-                    <p>Email: <a href="mailto:help@documint.com" className="text-blue-500 underline">help@documint.com</a></p>
-                    <p>Phone: +1 800-980-0055</p>
+                    <p className="text-white">Or reach out to us directly:</p>
+                    <p className="text-white">Email: <a href="mailto:help@documint.com" className="text-blue-500 underline">help@documint.com</a></p>
+                    <p className="text-white">Phone: +1 800-980-0055</p>
                 </div>
             </div>
             <Footer />

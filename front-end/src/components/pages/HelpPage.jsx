@@ -72,8 +72,8 @@ const HelpPage = () => {
 
     return (
         <>
-            <Navbar ClickFn={openProfileModal} />
-            {showProfileModal && <Profile />}
+            <Navbar />
+        
             <div className="home min-h-screen flex flex-col items-center justify-center  p-4">
                 <Carousel />
                 <div className="modal-content w-full max-w-md bg-emerald-950 rounded-lg shadow-lg p-6 mt-8">

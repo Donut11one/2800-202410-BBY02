@@ -18,40 +18,34 @@ const HeroSectionVid = () => {
       </em>
       <br />
       <div className="cards">
-        <div className="card">
-          <div className="inner">
-            <div className="front_face">
-              <h1>Secure</h1>
-              <FontAwesomeIcon icon={faFileShield} />
-            </div>
-            <div className="back_face">
-              <h1>Secure</h1> <br />
-              Your documents are protected on the blockchain.
-            </div>
+        <div className="card secure">
+          <div className="front_face">
+            <h1>Secure</h1>
+            <FontAwesomeIcon icon={faFileShield} />
+          </div>
+          <div className="back_face">
+            <h1>Secure</h1> <br />
+            Your documents are protected on the blockchain.
           </div>
         </div>
-        <div className="card">
-          <div className="inner">
-            <div className="front_face">
-              <h1>Accessible</h1>
-              <FontAwesomeIcon icon={faUniversalAccess} />
-            </div>
-            <div className="back_face">
-              <h1>Accessible</h1> <br />
-              Retrieve your documents anytime, anywhere.
-            </div>
+        <div className="card accessible">
+          <div className="front_face">
+            <h1>Accessible</h1>
+            <FontAwesomeIcon icon={faUniversalAccess} />
+          </div>
+          <div className="back_face">
+            <h1>Accessible</h1> <br />
+            Retrieve your documents anytime, anywhere.
           </div>
         </div>
-        <div className="card">
-          <div className="inner">
-            <div className="front_face">
-              <h1>Eco-Friendly</h1>
-              <FontAwesomeIcon icon={faLeaf} />
-            </div>
-            <div className="back_face">
-              <h1>Eco-Friendly</h1> <br />
-              Reduce paper waste and contribute to a greener planet.
-            </div>
+        <div className="card eco-friendly">
+          <div className="front_face">
+            <h1>Eco-Friendly</h1>
+            <FontAwesomeIcon icon={faLeaf} />
+          </div>
+          <div className="back_face">
+            <h1>Eco-Friendly</h1> <br />
+            Reduce paper waste and contribute to a greener planet.
           </div>
         </div>
       </div>

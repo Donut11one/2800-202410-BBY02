@@ -236,7 +236,6 @@
   border: solid #48ceb6;
   border-image: linear-gradient(to bottom, #48ceb6, transparent) 1;
   /* position: relative; */
-  transition: transform 1.5s;
   perspective: 1000px;
   transform-style: preserve-3d;
   background: linear-gradient(rgba(4, 49, 54, 1), rgba(4, 49, 54, 0));
@@ -251,6 +250,7 @@
 
 .card:hover {
   transform: rotateY(180deg);
+  transition: transform 1.5s;
   background: linear-gradient(rgba(72, 206, 182, 1), rgba(72, 206, 182, 0));
 }
 

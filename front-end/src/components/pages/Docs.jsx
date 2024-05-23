@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 import { Navigate } from "react-router-dom";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../../assets/helper-hardhat-config";
 import { Result, ethers } from "ethers";

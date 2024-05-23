@@ -10,7 +10,6 @@ import logo from "../../assets/images/stream-bg.jpeg";
 import UploadDocModal from "../UploadDocModal";
 import addWalletListener from "../../hooks/useWallet";
 import useWallet from "../../hooks/useWallet";
-import Profile from "./Profile";
 import WalletSetupInstruction from "../WalletSetupInstruction";
 
 const Home = () => {
@@ -18,9 +17,9 @@ const Home = () => {
   const [userName, setUserName] = useState("");
   const [showUploadModal, setShowUploadModal] = useState(false);
   const { walletAddress, connectWallet, getShortenedAddress } = useWallet();
-  const [showProfileModal, setShowProfileModal] = useState(false);
+  // const [showProfileModal, setShowProfileModal] = useState(false);
 
-  const openProfileModal = () => setShowProfileModal(true);
+  // const openProfileModal = () => setShowProfileModal(true);
 
   const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
@@ -52,8 +51,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar ClickFn={openProfileModal}/>
-      {showProfileModal && <Profile />}
+      <Navbar />
       <div className="home">
         {userName && (
           <p className="welcome-message">Welcome, {userName}!</p>

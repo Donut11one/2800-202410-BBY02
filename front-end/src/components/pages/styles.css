@@ -5,15 +5,16 @@
     --secondary: #BFDFDC;
 }
 
-.modal {
+/* .modal {
     background-color: black;
-}
+} */
 
 .btn--outline1 {
     padding: 4px 8px;
     font-size: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
+
 }
 
 .doc-wrapper {
@@ -63,4 +64,19 @@
     min-height: 80%;
     color: white;
     background-image: url("../../assets/images/Circle-bg.jpeg");
+}
+
+
+
+.small-text {
+    font-size: 12px;
+    /* Smaller text for less important information */
+}
+
+/* Docs.jsx */
+#DocumentMain {
+    height: 100%;
+    background-image: url("../../assets/images/stream-bg.jpeg");
+    background-size: 400%;
+    background-position: 0px -3200px;
 }

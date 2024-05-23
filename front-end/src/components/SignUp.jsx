@@ -8,15 +8,22 @@ const SignUp = ({ onClose }) => {
   const [name, setName] = useState(""); // State for user's name
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordHint, setPasswordHint] = useState(""); 
+  const [error, setError] = useState("");
 
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    setError("");
     if (!email || !password || !name) { // Check if name is provided
-      console.log("Input field empty");
+      setError("All fields are required.");
       return;
     }
+
+    if (password.length < 6) {
+      setError("Password should be at least 6 characters long.");
+      return;
+    }
+
     try {
       // Create user in Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -46,16 +53,7 @@ const SignUp = ({ onClose }) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error("Error:", errorCode, errorMessage);
-    }
-  };
-
-  const handlePasswordChange = (e) => {
-    const input = e.target.value;
-    setPassword(input);
-    if (input.length < 6) {
-      setPasswordHint('Password must be at least 6 characters long.');
-    } else {
-      setPasswordHint('');
+      setError("Failed to sign up. Please try again.");
     }
   };
 
@@ -80,6 +78,7 @@ const SignUp = ({ onClose }) => {
     <div className="modal flex items-center justify-center" style={{ zIndex: 100 }}>
       <div className="modal-content bg-emerald-950 rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>Sign Up</h2>
+        {error && <div className="text-red-500 mb-4">{error}</div>}
         <form id="signup" onSubmit={handleSignUp}>
           <input
             type="text"
@@ -106,12 +105,11 @@ const SignUp = ({ onClose }) => {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={handlePasswordChange}
+            onChange={(e) => setPassword(e.target.value)}
             required
             autoComplete="new-password"
             className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
           />
-          {passwordHint && <p className="text-white text-xs mt-1">{passwordHint}</p>}
           <button
             type="submit"
             className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"

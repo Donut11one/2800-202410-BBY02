@@ -6,6 +6,7 @@ const pinFileToIPFS = async (file) => {
     const pinataEndpoint = process.env.REACT_APP_PINATA_ENDPOINT;
     const pinataApiKey = process.env.REACT_APP_PINATA_API_KEY;
     const pinataApiSecret = process.env.REACT_APP_PINATA_API_SECRET;
+    console.log(file);
 
     const formatData = new FormData();
     formatData.append("file", file);
@@ -19,10 +20,9 @@ const pinFileToIPFS = async (file) => {
                 'Content-Type': 'multipart/form-data',
             },
         });
-        console.log('Successfully pinned file to IPFS : ', response.data);
         return response.data.IpfsHash;
     } catch (err) {
-        console.log('Error occurred while pinning file to IPFS: ', err);
+        alert('Error occurred while pinning file to IPFS: ', err);
     }
 };
 

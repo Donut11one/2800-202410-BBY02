@@ -42,13 +42,6 @@ const Wallet = () => {
       <Navbar buttonText={`Wallet Connected: ${hiddenAddress}`} />
       <div className="wallet">
         <h1>{`Connected: ${hiddenAddress}`}</h1>
-        <button
-          className="btn btn--large btn--primary"
-          onClick={openUploadModal}
-        >
-          Upload document
-        </button>
-        {showUploadModal && <UploadDocModal onClose={closeUploadModal} />}
 
       </div>
       <Footer />

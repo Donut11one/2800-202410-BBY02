@@ -618,12 +618,11 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: start;
-  border: solid #48ceb6;
 }
 
 .instruction-card {
   width: 80px;
-  border-radius: 0.75em;
+  border: solid #48ceb6;
   background-size: cover;
   cursor: pointer;
   overflow: hidden;
@@ -676,7 +675,7 @@
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-input {
+.instruction-container input {
   display: none;
 }
 

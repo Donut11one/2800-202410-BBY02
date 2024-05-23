@@ -11,6 +11,7 @@ import UploadDocModal from "../UploadDocModal";
 import addWalletListener from "../../hooks/useWallet";
 import useWallet from "../../hooks/useWallet";
 import Profile from "./Profile";
+import WalletSetupInstruction from "../WalletSetupInstruction";
 
 const Home = () => {
   const [showWalletModal, setShowWalletModal] = useState(false);
@@ -57,7 +58,7 @@ const Home = () => {
         {userName && (
           <p className="welcome-message">Welcome, {userName}!</p>
         )}
-        <br />
+        {!(walletAddress && walletAddress.length > 0) && <WalletSetupInstruction />}
         <button
           className="btn btn--outline btn--large"
           onClick={connectWallet}

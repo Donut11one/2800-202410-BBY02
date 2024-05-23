@@ -7,7 +7,7 @@ const WalletSetupInstruction = () => {
     <p className="instruction-header">Please install and create a wallet in metamask. See instruction below...</p>
     <div className="wrapper">
       <div className="instruction-container">
-        <input type="radio" name="instruction" id="i1" checked />
+        <input type="radio" name="instruction" id="i1" defaultChecked />
         <label htmlFor="i1" className="instruction-card">
           <div className="instruction-row">
             <div className="instruction-icon">1</div>
@@ -17,7 +17,7 @@ const WalletSetupInstruction = () => {
             </div>
           </div>
         </label>
-        <input type="radio" name="instruction" id="i2" checked />
+        <input type="radio" name="instruction" id="i2"  />
         <label htmlFor="i2" className="instruction-card">
           <div className="instruction-row">
             <div className="instruction-icon">2</div>
@@ -27,7 +27,7 @@ const WalletSetupInstruction = () => {
             </div>
           </div>
         </label>
-        <input type="radio" name="instruction" id="i3" checked />
+        <input type="radio" name="instruction" id="i3"  />
         <label htmlFor="i3" className="instruction-card">
           <div className="instruction-row">
             <div className="instruction-icon">3</div>
@@ -37,7 +37,7 @@ const WalletSetupInstruction = () => {
             </div>
           </div>
         </label>
-        <input type="radio" name="instruction" id="i4" checked />
+        <input type="radio" name="instruction" id="i4"  />
         <label htmlFor="i4" className="instruction-card">
           <div className="instruction-row">
             <div className="instruction-icon">4</div>
@@ -47,7 +47,7 @@ const WalletSetupInstruction = () => {
             </div>
           </div>
         </label>
-        <input type="radio" name="instruction" id="i5" checked />
+        <input type="radio" name="instruction" id="i5"  />
         <label htmlFor="i5" className="instruction-card">
           <div className="instruction-row">
             <div className="instruction-icon">5</div>

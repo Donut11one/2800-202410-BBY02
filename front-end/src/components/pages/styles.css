@@ -69,7 +69,6 @@
 
 
 .small-text {
-<<<<<<< HEAD
     font-size: 12px; /* Smaller text for less important information */
 }
 
@@ -110,10 +109,9 @@
     margin-bottom: 20px;
   }
   
-=======
-    font-size: 12px;
+   
     /* Smaller text for less important information */
-}
+
 
 /* Docs.jsx */
 #DocumentMain {
@@ -122,4 +120,3 @@
     background-size: 400%;
     background-position: 0px -3200px;
 }
->>>>>>> dev

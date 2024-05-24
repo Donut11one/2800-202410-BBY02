@@ -27,3 +27,20 @@
   color: black;
 }
 
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  align-items: center;
+  /* justify-content: stretch; */
+  font-size: 3rem;
+  padding-top: 20px;
+
+  background-image: url("./assets/images/stream-bg.jpeg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+

@@ -86,3 +86,39 @@ body {
 #receiverAddress {
     color: black;
 }
+
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    /* color: white; */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+  }
+  
+  .profile-content {
+    width: 100%;
+    max-width: 640px; /* Set a max-width for larger screens */
+    padding: 2rem;
+    /* background-color: white; */
+    border-radius: 0.5rem;
+    /* box-shadow: 0 4px 6px rgba(0,0,0,0.1); */
+  }
+  
+  .input-field {
+    margin-left: 10px; /* Space between label and input */
+    padding: 2px;
+    /* flex-grow: 0; Make input take up remaining space */
+    font-size: 20px; 
+    border-width: 2px;
+    border-radius: 0.5rem;
+  }
+  
+  .profile-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }

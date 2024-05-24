@@ -76,7 +76,7 @@ const Profile = () => {
             <div className="profile-page ">
                 {/* <div className="modal  items-center justify-start" style={{ zIndex: 100 }}> */}
                 <div className='profile-container w-full h-screen flex flex-col items-center justify-center '>
-                    <div className='profile-content  bg-emerald-950 w-full max-w-4xl p-6  rounded-lg shadow-md'>
+                    <div className='profile-content  yiming bg-emerald-950 w-full max-w-4xl p-6  rounded-lg shadow-md'>
                         <h1 className="text-2xl font-bold text-white-800 mb-6">Your Profile</h1>
                         <div className="profile-field mb-4">
                             <label className="text-lg text-white-800" >Name:</label>

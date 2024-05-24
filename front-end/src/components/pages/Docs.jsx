@@ -15,6 +15,7 @@ import {
     faCircleInfo
 } from "@fortawesome/free-solid-svg-icons";
 import switchNetworkImg from "../../assets/images/switch-network.png"
+import easteregg from "../../assets/images/nyan-cat.gif"
 
 
 const Docs = ({ wallet, networkSupported }) => {
@@ -104,6 +105,26 @@ const Docs = ({ wallet, networkSupported }) => {
         return <Navigate to="/home" />;
     }
 
+    //easter egg
+    var counter = 0;
+    useEffect(() => {
+        const handleLoad = () => {
+            let limit = (Math.random() * 1000) + 100;
+            //code for the easter egg
+            counter++
+            console.log(counter, limit);
+            // if(counter >= limit){
+                let eggelement = document.getElementById('easteregg');
+                eggelement.style.display = "block";
+            // }   
+        };
+        document.addEventListener('click', handleLoad);
+        return () => {
+          document.removeEventListener('click', handleLoad);
+        };
+      }, []);
+
+
     return (
         <>
             <Navbar />
@@ -140,6 +161,9 @@ const Docs = ({ wallet, networkSupported }) => {
                     </div>
                 </div>
             )}
+            <div id = 'easteregg'>
+                <img src={easteregg} alt="easter egg" id = "easter-egg-image"/>
+            </div>
             <Footer />
 
             {/* Burn Modal */}

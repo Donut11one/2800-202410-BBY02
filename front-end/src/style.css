@@ -4,6 +4,7 @@
   --gradient: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%);
 }
 
+=======
 .yiming {
   background: var(--gradient);
 }
@@ -740,4 +741,29 @@ input:checked + label .instruction-desc {
 /* UploadDocModal */
 .upload-doc-modal {
   background: var(--gradient);
+}
+
+
+/* Easter egg */
+#easteregg{
+  height: 200px;
+  width: 100vw;
+  background-color: rgb(0,0,0,0);
+  display: none;
+  position: absolute;
+  bottom: -50px;
+  overflow-x: hidden;
+}
+
+@keyframes across{
+  0%{left:-412px;}
+  100%{left:100vw;}
+}
+#easter-egg-image{
+  position: relative;
+  height: 100%;
+
+  animation: across linear;
+  animation-iteration-count: infinite;
+  animation-duration: 5s;
 }

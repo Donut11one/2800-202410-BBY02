@@ -19,7 +19,7 @@ import Profile from "./components/pages/Profile"
 const App = () => {
   const [user, setUser] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
-  const { walletAddress } = useWallet()
+  const { walletAddress, networkSupported } = useWallet()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -47,6 +47,7 @@ const App = () => {
           <Route path="/SignUp" element={<SignUp user={user}></SignUp>} />
           <Route path="/reset" element={<PasswordReset></PasswordReset>} />
           <Route path="/help" element={<HelpPage user={user} />} />
+          <Route path="/Profile" element={<Profile />} />
           <Route path='*' element={<NotFoundPage />} />
           <Route
             path="/home"
@@ -56,7 +57,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="/docgalery" element={<ProtectedRoute user={user}><Docs wallet={walletAddress} /></ProtectedRoute>}>
+          <Route path="/docgalery" element={<ProtectedRoute user={user}><Docs wallet={walletAddress} networkSupported={networkSupported} /></ProtectedRoute>}>
 
           </Route>
         </Routes>

@@ -6,7 +6,6 @@ import { Navigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import "./Home.css";
-import Profile from "./Profile";
 import Carousel from "../Carousel";
 
 
@@ -16,9 +15,7 @@ const HelpPage = () => {
     const [user, setUser] = useState(null);
     const [userName, setUserName] = useState("");
     const [loading, setLoading] = useState(true);
-    const [showProfileModal, setShowProfileModal] = useState(false);
 
-    const openProfileModal = () => setShowProfileModal(true);
 
     useEffect(() => {
         const auth = getAuth();
@@ -75,12 +72,11 @@ const HelpPage = () => {
 
     return (
         <>
-            <Navbar ClickFn={openProfileModal} />
-            {showProfileModal && <Profile />}
-            <div className="home min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
+            <Navbar />
+        
+            <div className="home min-h-screen flex flex-col items-center justify-center  p-4">
                 <Carousel />
-                <br/>
-                <div className="contact-container w-full max-w-md bg-emerald-950 rounded-lg shadow-lg p-6 mt-8">
+                <div className="modal-content w-full max-w-md bg-emerald-950 rounded-lg shadow-lg p-6 mt-8">
                     <form className="space-y-4" onSubmit={handleSubmit}>
                         <div>
                             <label className="text-xl font-bold text-white mb-4 text-center">We love your questions or any suggestions and you will get a reply from us within 24 hours.</label>
@@ -102,8 +98,7 @@ const HelpPage = () => {
                     <div className="mt-6 text-center">
                     </div>
                 </div>
-                <div className="mt-6 text-center text-sm">
-                    <p className="text-white">Or reach out to us directly:</p>
+                <div className="mt-6 text-center text-base">
                     <p className="text-white">Email: <a href="mailto:help@documint.com" className="text-blue-500 underline">help@documint.com</a></p>
                     <p className="text-white">Phone: +1 800-980-0055</p>
                 </div>

@@ -13,8 +13,8 @@ import {
     faArrowRightArrowLeft,
     faCircleInfo
 } from "@fortawesome/free-solid-svg-icons";
-import Footer from "../Footer";
 import { Modal, Button } from 'react-bootstrap';
+
 
 const Docs = ({ wallet, networkSupported }) => {
     const [tokenIds, setTokenIds] = useState([]);
@@ -94,7 +94,7 @@ const Docs = ({ wallet, networkSupported }) => {
         <>
             <Navbar />
             {networkSupported ? (
-                <div>
+                <div id="DocumentMain">
                     <h2>Your DocuMints</h2>
                     <div className="doc-wrapper">
                         {metadata.map((document, index) => (

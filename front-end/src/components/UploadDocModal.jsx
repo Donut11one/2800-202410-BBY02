@@ -46,15 +46,21 @@ const UploadDocModal = ({ onClose }) => {
     }
   }
 
+  const handleClose = (e) => {
+    if(e.target.id === 'upload-doc-wrapper') onClose();
+  }
+
   return (
-    <div className="flex items-center justify-center" style={{ zIndex: 100 }}>
-      <div className="modal-content bg-emerald-950 rounded-lg shadow-lg p-6">
+    <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center" id="upload-doc-wrapper" onClick={handleClose}>
+      <div className="upload-doc-modal text-xl rounded-lg shadow-lg md:w-[600px] w-[90%] mx-auto flex flex-col p-5">
         <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>
           Upload document
         </h2>
         <div>
-          <form id="userUpload">
+          <form id="userUpload" className="space-y-3 flex flex-col">
             <input
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+              focus:border-blue-500 block w-full p-2.5"
               type="text"
               placeholder="Name"
               name="name"
@@ -62,6 +68,8 @@ const UploadDocModal = ({ onClose }) => {
               onChange={(e) => setName(e.target.value)}
             />
             <input
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+              focus:border-blue-500 block w-full p-2.5"
               type="text"
               placeholder="Description"
               name="description"
@@ -73,12 +81,12 @@ const UploadDocModal = ({ onClose }) => {
               id="fileupload"
               onChange={async (e) => setImage(await filehash(e.target.files[0]))}
             />
-            <button type="button" onClick={handleSubmit}>
-              Mint Document
+            <button className="btn btn--outline btn--medium w-1/4 mx-auto font-extrabold" type="button" onClick={handleSubmit}>
+              DocuMint
             </button>
           </form>
         </div>
-        <button onClick={onClose} className="btn btn--outline">
+        <button onClick={onClose} className="btn btn--outline btn--medium w-1/4 mt-3 mx-auto font-bold">
           Close
         </button>
       </div>

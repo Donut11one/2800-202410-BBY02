@@ -13,14 +13,13 @@ import {
     faArrowRightArrowLeft,
     faCircleInfo
 } from "@fortawesome/free-solid-svg-icons";
-import { Modal, Button } from 'react-bootstrap';
 
 
 const Docs = ({ wallet, networkSupported }) => {
     const [tokenIds, setTokenIds] = useState([]);
     const [tokenURIs, setTokenURIs] = useState([]);
-    const [showTransferModal, setShowTransferModal] = useState(false);
     const [metadata, setMetadata] = useState([]);
+    const [showTransferModal, setShowTransferModal] = useState(false);
     const [show, setShow] = useState(false);
     const [receiverAddress, setReceiverAddress] = useState("");
     const [burnId, setBurnId] = useState(null);
@@ -32,6 +31,7 @@ const Docs = ({ wallet, networkSupported }) => {
     };
 
     const burnDoc = async (_id) => {
+        console.log("BURNING " + _id);
         console.log("BURNING " + _id);
         const provider = new Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -51,12 +51,11 @@ const Docs = ({ wallet, networkSupported }) => {
         setShowTransferModal(true);
     };
 
-    const transferDoc = (id) => {
+    const transferDoc = (id, receiver) => {
         console.log("transfer " + id);
     };
 
     useEffect(() => {
-        console.log(networkSupported);
         if (networkSupported) {
             const fetchTokenData = async () => {
                 try {
@@ -119,29 +118,31 @@ const Docs = ({ wallet, networkSupported }) => {
             )}
             <Footer />
 
-            <Modal show={show} onHide={handleClose} style={{ background: "rgba(0, 0, 0, 0.212)" }} aria-labelledby="contained-modal-title-vcenter"
-                centered>
-                <Modal.Header style={{ background: 'linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%)', color: "white", border: "none" }}>
-                    <Modal.Title>Confirm Burn</Modal.Title>
-                </Modal.Header>
-                <Modal.Body style={{ background: 'linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%)', color: "white" }}>Are you sure you want to burn this document? This action can't be undone.</Modal.Body>
-                <Modal.Footer style={{ background: 'linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%)', color: "white", justifyContent: "center", alignItems: "center", gap: "20px" }}>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Cancel
-                    </Button>
-                    <Button variant="danger" onClick={() => burnDoc(burnId)}>
-                        Burn
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            {/* Burn Modal */}
+            <div className={`fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center ${show ? '' : 'hidden'}`} onClick={handleClose}>
+                <div className="upload-doc-modal text-xl rounded-lg shadow-lg md:w-[600px] w-[90%] mx-auto flex flex-col p-5" style={{ background: "linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%)" }}>
+                    <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>
+                        Confirm Burn
+                    </h2>
+                    <p className="text-white">Are you sure you want to burn this document? This action can't be undone.</p>
+                    <div className="mt-4 flex justify-end">
+                        <button className="btn btn--outline btn--medium w-1/4 mx-auto font-extrabold" onClick={handleClose}>
+                            Cancel
+                        </button>
+                        <button className="btn btn--outline btn--medium w-1/4 mx-auto font-extrabold" onClick={() => burnDoc(burnId)}>
+                            Burn
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-            <Modal show={showTransferModal} onHide={handleCloseTransferModal} style={{ background: "rgba(0, 0, 0, 0.212)" }} aria-labelledby="contained-modal-title-vcenter"
-                centered>
-                <Modal.Header closeButton style={{ background: 'linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%)', color: "white", border: "none" }}>
-                    <Modal.Title>Transfer Document</Modal.Title>
-                </Modal.Header>
-                <Modal.Body style={{ background: 'linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%)', color: "white", border: "none" }}>
-                    <label htmlFor="receiverAddress">Receiver Address:</label>
+            {/* Transfer Modal */}
+            <div className={`fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center ${showTransferModal ? '' : 'hidden'}`} onClick={handleCloseTransferModal}>
+                <div className="upload-doc-modal text-xl rounded-lg shadow-lg md:w-[600px] w-[90%] mx-auto flex flex-col p-5" style={{ background: "linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%)" }}>
+                    <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>
+                        Transfer Document
+                    </h2>
+                    <label htmlFor="receiverAddress" className="text-white">Receiver Address:</label>
                     <input
                         type="text"
                         id="receiverAddress"
@@ -149,18 +150,19 @@ const Docs = ({ wallet, networkSupported }) => {
                         onChange={(e) => setReceiverAddress(e.target.value)}
                         className="border border-gray-300 rounded-md p-1 w-full"
                     />
-                </Modal.Body>
-                <Modal.Footer style={{ background: 'linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%)', color: "white", border: "none" }}>
-                    <Button variant="secondary" onClick={handleCloseTransferModal}>
-                        Cancel
-                    </Button>
-                    <Button variant="primary" onClick={() => transferDoc(burnId, receiverAddress)}>
-                        Transfer
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                    <div className="mt-4 flex justify-end">
+                        <button className="btn btn--outline btn--medium w-1/4 mx-auto font-extrabold" onClick={handleCloseTransferModal}>
+                            Cancel
+                        </button>
+                        <button className="btn btn--outline btn--medium w-1/4 mx-auto font-extrabold" onClick={() => transferDoc(burnId)}>
+                            Transfer
+                        </button>
+                    </div>
+                </div>
+            </div>
         </>
     );
 };
+
 
 export default Docs;

@@ -79,9 +79,10 @@ const HelpPage = () => {
                 <div className="yiming modal-content w-full max-w-md bg-emerald-950 rounded-lg shadow-lg p-6 mt-8">
                     <form className="space-y-4 yiming" onSubmit={handleSubmit}>
                         <div>
-                            <label className="text-xl font-bold text-white mb-4 text-center">We love your questions or any suggestions and you will get a reply from us within 24 hours.</label>
+                            <label className="text-xl font-bold text-white mb-4 text-center">Message us</label>
                             <textarea
                                 className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500 bg-white text-black"
+                                placeholder="Feedbacks or suggestions... "
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                                 required

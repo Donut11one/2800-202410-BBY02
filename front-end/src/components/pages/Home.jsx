@@ -50,8 +50,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar ClickFn={openProfileModal} />
-      {showProfileModal && <Profile />}
+      <Navbar />
       <div className="home">
         {userName && <p className="welcome-message">Welcome, {userName}!</p>}
         {walletAddress && walletAddress.length > 0 ? (

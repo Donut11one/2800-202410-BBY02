@@ -9,6 +9,10 @@
     background-color: black;
 } */
 
+body {
+    background-color: black;
+}
+
 .btn--outline1 {
     padding: 4px 8px;
     font-size: 12px;
@@ -57,66 +61,28 @@
     border-radius: 10px;
 }
 
-.error {
+.flex {
     text-align: center;
-    font-size: 56px;
+    font-size: 36pxpx;
     padding-top: 20px;
-    min-height: 80%;
     color: white;
-    background-image: url("../../assets/images/Circle-bg.jpeg");
 }
 
 
 
 .small-text {
-    font-size: 12px; /* Smaller text for less important information */
-}
-
-
-
-.profile-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
-    /* color: white; */
-    height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
-  }
-  
-  .profile-content {
-    width: 100%;
-    max-width: 640px; /* Set a max-width for larger screens */
-    padding: 2rem;
-    /* background-color: white; */
-    border-radius: 0.5rem;
-    /* box-shadow: 0 4px 6px rgba(0,0,0,0.1); */
-  }
-  
-  .input-field {
-    margin-left: 10px; /* Space between label and input */
-    padding: 2px;
-    /* flex-grow: 0; Make input take up remaining space */
-    font-size: 20px; 
-    border-width: 2px;
-    border-radius: 0.5rem;
-  }
-  
-  .profile-field {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-   
+    font-size: 12px;
     /* Smaller text for less important information */
-
+}
 
 /* Docs.jsx */
 #DocumentMain {
     height: 100%;
     background-image: url("../../assets/images/stream-bg.jpeg");
-    background-size: 400%;
-    background-position: 0px -3200px;
+    background-size: cover;
+
+}
+
+#receiverAddress {
+    color: black;
 }

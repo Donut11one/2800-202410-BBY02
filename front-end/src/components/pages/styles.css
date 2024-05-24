@@ -1,5 +1,8 @@
 :root {
     --primary: rgb(47, 218, 203);
+    --dark: #043136;
+    --grey: #8EA8A6;
+    --secondary: #BFDFDC;
 }
 
 /* .modal {
@@ -19,6 +22,7 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     padding: 40px;
     gap: 20px;
+    min-height: 78%;
 }
 
 .doc-card {
@@ -53,9 +57,19 @@
     border-radius: 10px;
 }
 
+.error {
+    text-align: center;
+    font-size: 56px;
+    padding-top: 20px;
+    min-height: 80%;
+    color: white;
+    background-image: url("../../assets/images/Circle-bg.jpeg");
+}
+
 
 
 .small-text {
+<<<<<<< HEAD
     font-size: 12px; /* Smaller text for less important information */
 }
 
@@ -96,3 +110,16 @@
     margin-bottom: 20px;
   }
   
+=======
+    font-size: 12px;
+    /* Smaller text for less important information */
+}
+
+/* Docs.jsx */
+#DocumentMain {
+    height: 100%;
+    background-image: url("../../assets/images/stream-bg.jpeg");
+    background-size: 400%;
+    background-position: 0px -3200px;
+}
+>>>>>>> dev

@@ -1,0 +1,124 @@
+:root {
+    --primary: rgb(47, 218, 203);
+    --dark: #043136;
+    --grey: #8EA8A6;
+    --secondary: #BFDFDC;
+}
+
+/* .modal {
+    background-color: black;
+} */
+
+body {
+    background-color: black;
+}
+
+.btn--outline1 {
+    padding: 4px 8px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+}
+
+.doc-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    padding: 40px;
+    gap: 20px;
+    min-height: 78%;
+}
+
+.doc-card {
+    background-color: var(--primary);
+    position: relative;
+    border-radius: 10px;
+    width: 350px;
+    height: 440px;
+    padding: 5px;
+}
+
+.doc-image {
+    max-width: 100%;
+}
+
+.doc-controls {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    padding: 3px;
+    margin: 0;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.doc-controls button {
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.flex {
+    text-align: center;
+    font-size: 36pxpx;
+    padding-top: 20px;
+    color: white;
+}
+
+
+
+.small-text {
+    font-size: 12px;
+    /* Smaller text for less important information */
+}
+
+/* Docs.jsx */
+#DocumentMain {
+    height: 100%;
+    background-image: url("../../assets/images/stream-bg.jpeg");
+    background-size: cover;
+
+}
+
+#receiverAddress {
+    color: black;
+}
+
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    /* color: white; */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+  }
+  
+  .profile-content {
+    width: 100%;
+    max-width: 640px; /* Set a max-width for larger screens */
+    padding: 2rem;
+    /* background-color: white; */
+    border-radius: 0.5rem;
+    /* box-shadow: 0 4px 6px rgba(0,0,0,0.1); */
+  }
+  
+  .input-field {
+    margin-left: 10px; /* Space between label and input */
+    padding: 2px;
+    /* flex-grow: 0; Make input take up remaining space */
+    font-size: 20px; 
+    border-width: 2px;
+    border-radius: 0.5rem;
+  }
+  
+  .profile-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }

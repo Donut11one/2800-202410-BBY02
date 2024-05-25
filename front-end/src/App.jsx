@@ -10,12 +10,16 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Home from "./components/pages/Home";
 import PasswordReset from "./components/PasswordReset";
-import Wallet from "./components/pages/Wallet";
 import NotFoundPage from "./components/pages/NotFoundPage";
+import Docs from "./components/pages/Docs";
+import useWallet from "./hooks/useWallet";
+import HelpPage from "./components/pages/HelpPage";
+import Profile from "./components/pages/Profile"
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
+  const { walletAddress, networkSupported } = useWallet()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -34,7 +38,6 @@ const App = () => {
   if (isFetching) {
     return <h1>Loading...</h1>;
   }
-
   return (
     <>
       <Router>
@@ -43,6 +46,8 @@ const App = () => {
           <Route path="/Login" element={<Login user={user}></Login>} />
           <Route path="/SignUp" element={<SignUp user={user}></SignUp>} />
           <Route path="/reset" element={<PasswordReset></PasswordReset>} />
+          <Route path="/help" element={<HelpPage user={user} />} />
+          <Route path="/Profile" element={<Profile />} />
           <Route path='*' element={<NotFoundPage />} />
           <Route
             path="/home"
@@ -52,14 +57,9 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/wallet/:address"
-            element={
-              <ProtectedRoute user={user}>
-                <Wallet></Wallet>
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/docgalery" element={<ProtectedRoute user={user}><Docs wallet={walletAddress} networkSupported={networkSupported} /></ProtectedRoute>}>
+
+          </Route>
         </Routes>
       </Router>
     </>

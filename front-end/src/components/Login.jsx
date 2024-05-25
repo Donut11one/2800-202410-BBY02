@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../fbconfig";
-import { doc, setDoc, getDoc, updateDoc  } from 'firebase/firestore';
-import "./Button.css"; // Import button styles
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import "../style.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null); // State to track user authentication
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setError("");
     if (!email || !password) {
-      console.log("Input field empty");
+      setError("Email and Password are required.");
       return;
     }
     signInWithEmailAndPassword(auth, email, password)
@@ -49,6 +51,7 @@ const Login = ({ onClose }) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error("Error:", errorCode, errorMessage);
+        setError("Invalid email or password.");
       });
   };
 
@@ -80,11 +83,16 @@ const Login = ({ onClose }) => {
     return "Unknown Browser";
   };
 
+  const handleClose = (e) => {
+    if (e.target.id === 'login-modal-close') onClose();
+  }
+
   return (
-    <div className="modal flex items-center justify-center" style={{ zIndex: 100 }}>
-      <div className="modal-content bg-emerald-950 rounded-lg shadow-lg p-6">
+    <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center" style={{ zIndex: 100 }} id="login-modal-close" onClick={handleClose}>
+      <div className="upload-doc-modal text-xl rounded-lg shadow-lg md:w-[600px] w-[90%] mx-auto flex flex-col p-5">
         <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>Login</h2>
-        <form id="login" onSubmit={handleLogin}>
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+        <form id="login" className="space-y-3 flex flex-col" onSubmit={handleLogin}>
           <input
             type="email"
             placeholder="Email"
@@ -93,7 +101,8 @@ const Login = ({ onClose }) => {
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
-            className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+            focus:border-blue-500 block w-full p-2.5"
           />
           <input
             type="password"
@@ -103,24 +112,25 @@ const Login = ({ onClose }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
             autoComplete="current-password"
-            className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+            focus:border-blue-500 block w-full p-2.5"
           />
-          <br />
-          <p className="text font-bold mb-4" style={{ color: "white" }} onClick={handleReset}>Forgot Password?</p>
           <button
             type="submit"
-            className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
-          ></button>
-          <button
-            type="submit"
-            className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
+            className="btn btn--outline bg-transparent block w-full py-2 mt-4 rounded-md focus:outline-none"
           >
             Login
+          </button>
+          <button
+            type="button" onClick={handleReset}
+            className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
+          >
+            Forgot Password?
           </button>
         </form>
         <button
           onClick={onClose}
-          className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
+          className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
         >
           Close
         </button>

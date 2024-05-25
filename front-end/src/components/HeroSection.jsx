@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import "../App.css";
+import React, { useState, useEffect } from "react";
+import "../style.css";
 import { Button } from "./Button";
-import "./HeroSection.css";
-import HeroSectionVid from "./HeroSectionVid";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
@@ -16,29 +14,39 @@ const HeroSection = () => {
   const openSignUpModal = () => setShowSignUpModal(true);
   const closeSignUpModal = () => setShowSignUpModal(false);
 
+  useEffect(() => {
+    if (showLoginModal || showSignUpModal) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [showLoginModal, showSignUpModal]);
+
   return (
     <div className="hero-container relative">
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <HeroSectionVid />
-        <div className="hero-btns flex flex-col items-center">
+      <div className="absolute  flex flex-col items-center justify-center">
+        <div className="hero-btns flex flex-col md:flex-row items-center">
           <Button
-            className="btns mb-4 bg-green-400 hover:bg-green-500"
+            // className="btns mb-4 bg-green-400 hover:bg-green-500"
             buttonStyle="btn--outline"
-            buttonSize="btn--large"
+            buttonSize="btn--medium"
+            // buttonSize="btn--large"
             onClick={openLoginModal}
           >
             LOGIN
           </Button>
           <Button
-            className="btns bg-green-400 hover:bg-green-500"
+            // className="btns bg-green-400 hover:bg-green-500"
             buttonStyle="btn--outline"
-            buttonSize="btn--large"
+            buttonSize="btn--medium"
+            // buttonSize="btn--large"
             onClick={openSignUpModal}
           >
             SIGN UP
           </Button>
         </div>
       </div>
+      {(showLoginModal || showSignUpModal) && <div className="modal-overlay"></div>}
       {showLoginModal && <Login onClose={closeLoginModal} />}
       {showSignUpModal && <SignUp onClose={closeSignUpModal} />}
     </div>

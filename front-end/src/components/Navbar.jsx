@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../fbconfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faTimes,
-  faClipboardQuestion,
   faHandshakeAngle,
   faUser,
   faRightFromBracket,
+  faFolderOpen,
 } from "@fortawesome/free-solid-svg-icons";
-import "./Navbar.css";
+import "../style.css";
 import logo from "../assets/images/DocuMintHorizontal.png";
+import useWallet from "../hooks/useWallet"; // Adjust the path as needed
 
-const Navbar = ({ buttonText = "Connect Wallet" }) => {
+const Navbar = ({ ClickFn }) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const { walletAddress, connectWallet, getShortenedAddress } = useWallet();
+  const navigate = useNavigate();
+
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -32,15 +36,18 @@ const Navbar = ({ buttonText = "Connect Wallet" }) => {
 
   useEffect(() => {
     showButton();
+    window.addEventListener("resize", showButton);
+    return () => window.removeEventListener("resize", showButton);
   }, []);
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => console.log("Signed Out"))
+      .then(() => {
+        console.log("Signed Out");
+        navigate("/");
+      })
       .catch((error) => console.log(error));
   };
-
-  window.addEventListener("resize", showButton);
 
   return (
     <>
@@ -60,23 +67,24 @@ const Navbar = ({ buttonText = "Connect Wallet" }) => {
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
-              <Link to="" className="nav-links" onClick={closeMobileMenu}>
+              <Link to="/help" className="nav-links" onClick={closeMobileMenu}>
                 <FontAwesomeIcon icon={faHandshakeAngle} />
                 Help
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="" className="nav-links" onClick={closeMobileMenu}>
-                <FontAwesomeIcon icon={faClipboardQuestion} />
-                FAQs
+              <Link to="/docgalery" className="nav-links" onClick={closeMobileMenu}>
+                <FontAwesomeIcon icon={faFolderOpen} />
+                My Documents
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="" className="nav-links" onClick={closeMobileMenu}>
+              <Link to="/Profile" className="nav-links" onClick={ClickFn}>
                 <FontAwesomeIcon icon={faUser} />
                 Profile
               </Link>
             </li>
+
             <li className="nav-item">
               <button className="nav-links" onClick={handleSignOut}>
                 <FontAwesomeIcon icon={faRightFromBracket} />
@@ -84,17 +92,16 @@ const Navbar = ({ buttonText = "Connect Wallet" }) => {
               </button>
             </li>
 
-            <li>
-              <Link
-                to=""
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                Connect Wallet
-              </Link>
-            </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">{buttonText}</Button>}
+          {button && (
+            walletAddress ? (
+              <Button buttonStyle="btn--outline">{`Wallet Connected: ${getShortenedAddress(walletAddress)}`}</Button>
+            ) : (
+              <Button buttonStyle="btn--outline" onClick={connectWallet}>
+                Connect your wallet!
+              </Button>
+            )
+          )}
         </div>
       </nav>
     </>

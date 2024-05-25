@@ -2,19 +2,28 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../fbconfig";
 import { doc, setDoc } from "firebase/firestore";
-import "./Button.css"; // Import button styles
+import "../style.css"; // Import button styles
 
 const SignUp = ({ onClose }) => {
   const [name, setName] = useState(""); // State for user's name
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    setError("");
     if (!email || !password || !name) { // Check if name is provided
-      console.log("Input field empty");
+      setError("All fields are required.");
       return;
     }
+
+    if (password.length < 6) {
+      setError("Password should be at least 6 characters long.");
+      return;
+    }
+
     try {
       // Create user in Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -44,6 +53,7 @@ const SignUp = ({ onClose }) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error("Error:", errorCode, errorMessage);
+      setError("Failed to sign up. Please try again.");
     }
   };
 
@@ -64,11 +74,16 @@ const SignUp = ({ onClose }) => {
     return "Unknown Browser";
   };
 
+  const handleClose = (e) => {
+    if (e.target.id === 'SignUp-modal-close') onClose();
+  }
+
   return (
-    <div className="modal flex items-center justify-center" style={{ zIndex: 100 }}>
-      <div className="modal-content bg-emerald-950 rounded-lg shadow-lg p-6">
+    <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center" style={{ zIndex: 100 }} id="SignUp-modal-close" onClick={handleClose}>
+      <div className="upload-doc-modal text-xl rounded-lg shadow-lg md:w-[600px] w-[90%] mx-auto flex flex-col p-5">
         <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>Sign Up</h2>
-        <form id="signup" onSubmit={handleSignUp}>
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+        <form id="signup" className="space-y-3" onSubmit={handleSignUp}>
           <input
             type="text"
             placeholder="Name"
@@ -77,7 +92,8 @@ const SignUp = ({ onClose }) => {
             onChange={(e) => setName(e.target.value)} // Update name state
             required
             autoComplete="name"
-            className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+            focus:border-blue-500 block w-full p-2.5"
           />
           <input
             type="email"
@@ -87,7 +103,8 @@ const SignUp = ({ onClose }) => {
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
-            className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+            focus:border-blue-500 block w-full p-2.5"
           />
           <input
             type="password"
@@ -97,11 +114,12 @@ const SignUp = ({ onClose }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
             autoComplete="new-password"
-            className="block w-full px-4 py-2 mt-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+            focus:border-blue-500 block w-full p-2.5"
           />
           <button
             type="submit"
-            className="btn btn--primary block w-full py-2 mt-4 rounded-md focus:outline-none"
+            className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"
           >
             Sign Up
           </button>

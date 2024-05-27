@@ -4,7 +4,6 @@
   --gradient: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%);
 }
 
-
 .yiming {
   background: var(--gradient);
 }
@@ -51,14 +50,12 @@
 }
 
 .text-base {
-  font-size: 1rem;  /* Equivalent to typically 16px, depending on user settings */
+  font-size: 1rem; /* Equivalent to typically 16px, depending on user settings */
 }
-
 
 .small-text {
   font-size: 12px; /* Smaller text for less important information */
 }
-
 
 @media (min-width: 1025px) {
   .btn--medium {
@@ -305,7 +302,7 @@
   background-color: #043136;
   border-radius: 50%;
   box-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #043136,
-      0 0 80px #043136, 0 0 90px #043136, 0 0 110px #043136, 0 0 170px #043136;
+    0 0 80px #043136, 0 0 90px #043136, 0 0 110px #043136, 0 0 170px #043136;
   /* animation: glow 1.5s infinite alternate; */
 }
 
@@ -316,12 +313,23 @@
   .containers em {
     font-size: xx-small;
   }
+
+  .cards .card {
+    width: 150px;
+    height: 150px;
+  }
+
+  .fa-file-shield,
+  .fa-universal-access,
+  .fa-leaf {
+    height: 40px;
+  }
 }
 
 @media (max-width: 600px) {
-  .containers {
+  /* .containers {
     padding: 20px;
-  }
+  } */
 }
 
 /* Navbar */
@@ -743,23 +751,26 @@ input:checked + label .instruction-desc {
   background: var(--gradient);
 }
 
-
 /* Easter egg */
-#easteregg{
+#easteregg {
   height: 200px;
   width: 100vw;
-  background-color: rgb(0,0,0,0);
+  background-color: rgb(0, 0, 0, 0);
   display: none;
   position: absolute;
   bottom: -50px;
   overflow-x: hidden;
 }
 
-@keyframes across{
-  0%{left:-412px;}
-  100%{left:100vw;}
+@keyframes across {
+  0% {
+    left: -412px;
+  }
+  100% {
+    left: 100vw;
+  }
 }
-#easter-egg-image{
+#easter-egg-image {
   position: relative;
   height: 100%;
 

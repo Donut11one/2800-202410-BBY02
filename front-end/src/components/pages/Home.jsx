@@ -11,6 +11,7 @@ import UploadDocModal from "../UploadDocModal";
 import addWalletListener from "../../hooks/useWallet";
 import useWallet from "../../hooks/useWallet";
 import WalletSetupInstruction from "../WalletSetupInstruction";
+import MetamaskInfo from "../MetamaskInfo";
 
 const Home = () => {
   const [showWalletModal, setShowWalletModal] = useState(false);
@@ -54,12 +55,15 @@ const Home = () => {
       <div className="home">
         {userName && <p className="welcome-message">Welcome, {userName}!</p>}
         {walletAddress && walletAddress.length > 0 ? (
-          <button
-            className="btn btn--large btn--primary"
-            onClick={openUploadModal}
-          >
-            Upload document
-          </button>
+          <>
+          <MetamaskInfo />
+            <button
+              className="btn btn--large btn--primary"
+              onClick={openUploadModal}
+            >
+              Upload document
+            </button>
+          </>
         ) : (
           <>
             <WalletSetupInstruction />

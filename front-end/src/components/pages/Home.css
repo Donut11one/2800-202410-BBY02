@@ -8,6 +8,12 @@
     justify-content: start;
 }
 
+@media (max-width: 600px) {
+  .home .welcome-message {
+    font-size: 2rem;
+  }
+}
+
 .welcome-message {
     color: white;
 }

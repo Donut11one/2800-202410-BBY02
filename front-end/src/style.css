@@ -746,6 +746,53 @@ input:checked + label .instruction-desc {
   background-repeat: no-repeat;
 }
 
+@media (max-width: 768px) {
+  .instruction-container {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .instruction-card {
+    width: 90%;
+    margin: 10px 0;
+  }
+
+  .instruction-card > .instruction-row > .instruction-desc {
+    width: 100%;
+  }
+
+  input:checked + label {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .instruction-header {
+    font-size: 10pt;
+  }
+
+  .wrapper {
+    font-size: 8pt;
+  }
+
+  .instruction-card {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .instruction-card > .instruction-row > .instruction-icon {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+  }
+
+  .instruction-card > .instruction-row > .instruction-desc {
+    height: auto;
+    padding: 10px;
+  }
+}
+
 /* UploadDocModal */
 .upload-doc-modal {
   background: var(--gradient);
@@ -777,4 +824,25 @@ input:checked + label .instruction-desc {
   animation: across linear;
   animation-iteration-count: infinite;
   animation-duration: 5s;
+}
+
+/* MetamaskInfo */
+.metamask-video {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+.metamask-video p {
+  font-size: large;
+  text-align: center;
+}
+
+@media (max-width: 610px) {
+  .metamask-video {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .metamask-video iframe {
+    width: 300px;
+    height: 150px;
+  }
 }

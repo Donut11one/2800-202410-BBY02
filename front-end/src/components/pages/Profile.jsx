@@ -92,9 +92,9 @@ const Profile = () => {
                         <div className="profile-field mb-4">
                             <p className="text-lg text-white-800">Device Type: {deviceInfo.deviceType}</p>
                         </div>
-                        <div className="flex mt-4">
-                            <Button className="btn--small mr-2" >Close</Button>
-                            <button className="btn--medium" disabled={!updbtn} onClick={updateUserProfile}>Update</button>
+                        <div className="flex mt-4 space-x-8">
+                            <Button buttonStyle="yiming" className="btn--small mr-2" >Close</Button>
+                            <button className="btn--medium yiming" disabled={!updbtn} onClick={updateUserProfile}>Update</button>
                         </div>
                     </div>
                 </div>

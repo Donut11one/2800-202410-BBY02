@@ -73,7 +73,6 @@ const HelpPage = () => {
     return (
         <>
             <Navbar />
-
             <div className="home min-h-screen flex flex-col items-center justify-center  p-4">
                 <Carousel />
                 <div className="yiming modal-content w-full max-w-md bg-emerald-950 rounded-lg shadow-lg p-6 mt-8">
@@ -90,8 +89,7 @@ const HelpPage = () => {
                         </div>
                         <button
                             type="submit"
-                            className="btn btn--outline block text-lg w-full py-2 mt-3 rounded-md focus:outline-none"
-                        >
+                            className="btn btn--outline block text-lg w-full py-2 mt-3 rounded-md focus:outline-none">
                             Submit
                         </button>
                     </form>

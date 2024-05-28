@@ -88,8 +88,8 @@ const SignUp = ({ onClose }) => {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    if (!/\S+@\S+\.\S+/.test(e.target.value)) {
-      setEmailHint("Please enter a valid email address.");
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(e.target.value)) {
+      setEmailHint("Please enter a valid email address without special characters.");
     } else {
       setEmailHint("");
     }
@@ -99,6 +99,10 @@ const SignUp = ({ onClose }) => {
     setPassword(e.target.value);
     if (e.target.value.length < 6) {
       setPasswordHint("Password should be at least 6 characters long.");
+    } else if (!/[a-zA-Z]/.test(e.target.value)) {
+      setPasswordHint("Password must contain at least one letter.");
+    } else if (!/[0-9]/.test(e.target.value)) {
+      setPasswordHint("Password must contain at least one number.");
     } else {
       setPasswordHint("");
     }

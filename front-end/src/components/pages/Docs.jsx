@@ -113,16 +113,16 @@ const Docs = ({ wallet, networkSupported }) => {
             //code for the easter egg
             counter++
             console.log(counter, limit);
-            // if(counter >= limit){
+            if (counter >= limit) {
                 let eggelement = document.getElementById('easteregg');
                 eggelement.style.display = "block";
-            // }   
+            }
         };
         document.addEventListener('click', handleLoad);
         return () => {
-          document.removeEventListener('click', handleLoad);
+            document.removeEventListener('click', handleLoad);
         };
-      }, []);
+    }, []);
 
 
     return (
@@ -161,8 +161,8 @@ const Docs = ({ wallet, networkSupported }) => {
                     </div>
                 </div>
             )}
-            <div id = 'easteregg'>
-                <img src={easteregg} alt="easter egg" id = "easter-egg-image"/>
+            <div id='easteregg'>
+                <img src={easteregg} alt="easter egg" id="easter-egg-image" />
             </div>
             <Footer />
 

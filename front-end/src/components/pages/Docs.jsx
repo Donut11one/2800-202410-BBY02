@@ -134,8 +134,10 @@ const Docs = ({ wallet, networkSupported }) => {
                     <div className="doc-wrapper">
                         {metadata.map((document, index) => (
                             <div className="doc-card" key={index}>
-                                <h2>{document.name}</h2>
-                                <h2>Document's Id: {tokenIds[index]}</h2>
+                                <div className="doc-name">
+                                    <h2>{document.name}</h2>
+                                    <p>Id: {tokenIds[index]}</p>
+                                </div>
                                 <img src={document.image} alt="doc image" className="doc-image" />
                                 <div className="doc-controls">
                                     <button onClick={() => { handleShowTransferModal(tokenIds[index]) }}>Transfer <FontAwesomeIcon icon={faArrowRightArrowLeft} /></button>

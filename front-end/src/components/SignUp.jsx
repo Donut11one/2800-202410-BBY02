@@ -9,6 +9,9 @@ const SignUp = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [nameHint, setNameHint] = useState("");
+  const [emailHint, setEmailHint] = useState("");
+  const [passwordHint, setPasswordHint] = useState("");
 
 
   const handleSignUp = async (e) => {
@@ -74,6 +77,38 @@ const SignUp = ({ onClose }) => {
     return "Unknown Browser";
   };
 
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+    if (e.target.value.length < 3) {
+      setNameHint("Name should be at least 3 characters long.");
+    } else {
+      setNameHint("");
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(e.target.value)) {
+      setEmailHint("Please enter a valid email address without special characters.");
+    } else {
+      setEmailHint("");
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    if (e.target.value.length < 6) {
+      setPasswordHint("Password should be at least 6 characters long.");
+    } else if (!/[a-zA-Z]/.test(e.target.value)) {
+      setPasswordHint("Password must contain at least one letter.");
+    } else if (!/[0-9]/.test(e.target.value)) {
+      setPasswordHint("Password must contain at least one number.");
+    } else {
+      setPasswordHint("");
+    }
+  };
+
+
   const handleClose = (e) => {
     if (e.target.id === 'SignUp-modal-close') onClose();
   }
@@ -89,34 +124,37 @@ const SignUp = ({ onClose }) => {
             placeholder="Name"
             name="name"
             value={name}
-            onChange={(e) => setName(e.target.value)} // Update name state
+            onChange={handleNameChange}
             required
             autoComplete="name"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
             focus:border-blue-500 block w-full p-2.5"
           />
+          {nameHint && <p className="text-red-500 text-xs mt-1">{nameHint}</p>}
           <input
             type="email"
             placeholder="Email"
             name="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
             required
             autoComplete="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
             focus:border-blue-500 block w-full p-2.5"
           />
+           {emailHint && <p className="text-red-500 text-xs mt-1">{emailHint}</p>}
           <input
             type="password"
             placeholder="Password"
             name="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             required
             autoComplete="new-password"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
             focus:border-blue-500 block w-full p-2.5"
           />
+           {passwordHint && <p className="text-red-500 text-xs mt-1">{passwordHint}</p>}
           <button
             type="submit"
             className="btn btn--outline block w-full py-2 mt-4 rounded-md focus:outline-none"

@@ -73,7 +73,7 @@ const HelpPage = () => {
     return (
         <>
             <Navbar />
-        
+
             <div className="home min-h-screen flex flex-col items-center justify-center  p-4">
                 <Carousel />
                 <div className="yiming modal-content w-full max-w-md bg-emerald-950 rounded-lg shadow-lg p-6 mt-8">
@@ -99,9 +99,10 @@ const HelpPage = () => {
                     <div className="mt-6 text-center">
                     </div>
                 </div>
-                <div className="mt-6 text-center text-base">
-                    <p className="text-white">Email: <a href="mailto:help@documint.com" className="text-blue-500 underline">help@documint.com</a></p>
-                    <p className="text-white">Phone: +1 800-980-0055</p>
+                <br />
+                <div class="yiming w-full max-w-md bg-emerald-950 p-6 space-y-4 rounded-lg shadow-lg">
+                    <p class="text-white mb-4 text-lg">Email: <a href="mailto:help@documint.com" class="text-blue-500 underline hover:text-blue-400">help@documint.com</a></p>
+                    <p class="text-white text-lg">Phone: +1 800-980-0055</p>
                 </div>
             </div>
             <Footer />

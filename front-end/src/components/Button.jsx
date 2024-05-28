@@ -2,7 +2,7 @@ import React from 'react'
 import "../style.css";
 import { Link } from "react-router-dom";
 
-const STYLES = ["btn--primary", "btn--outline"];
+const STYLES = ["btn--primary", "btn--outline", "yiming"];
 
 const SIZES = ["btn--medium", "btn--large"];
 

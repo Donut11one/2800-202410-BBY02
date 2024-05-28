@@ -90,7 +90,7 @@ const HelpPage = () => {
                         </div>
                         <button
                             type="submit"
-                            className="w-full py-2 bg-green-500 text-white text-sm rounded-md hover:bg-green-600"
+                            className="btn btn--outline block text-lg w-full py-2 mt-3 rounded-md focus:outline-none"
                         >
                             Submit
                         </button>

@@ -4,9 +4,9 @@
   --gradient: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%);
 }
 
-
 .yiming {
   background: var(--gradient);
+  color: white;
 }
 
 /* button */
@@ -51,14 +51,12 @@
 }
 
 .text-base {
-  font-size: 1rem;  /* Equivalent to typically 16px, depending on user settings */
+  font-size: 1rem; /* Equivalent to typically 16px, depending on user settings */
 }
-
 
 .small-text {
   font-size: 12px; /* Smaller text for less important information */
 }
-
 
 @media (min-width: 1025px) {
   .btn--medium {
@@ -305,7 +303,7 @@
   background-color: #043136;
   border-radius: 50%;
   box-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #043136,
-      0 0 80px #043136, 0 0 90px #043136, 0 0 110px #043136, 0 0 170px #043136;
+    0 0 80px #043136, 0 0 90px #043136, 0 0 110px #043136, 0 0 170px #043136;
   /* animation: glow 1.5s infinite alternate; */
 }
 
@@ -316,12 +314,23 @@
   .containers em {
     font-size: xx-small;
   }
+
+  .cards .card {
+    width: 150px;
+    height: 150px;
+  }
+
+  .fa-file-shield,
+  .fa-universal-access,
+  .fa-leaf {
+    height: 40px;
+  }
 }
 
 @media (max-width: 600px) {
-  .containers {
+  /* .containers {
     padding: 20px;
-  }
+  } */
 }
 
 /* Navbar */
@@ -440,7 +449,7 @@
   }
 
   .nav-menu.active {
-    background: #242222;
+    background: var(--gradient);
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
@@ -738,32 +747,103 @@ input:checked + label .instruction-desc {
   background-repeat: no-repeat;
 }
 
+@media (max-width: 768px) {
+  .instruction-container {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .instruction-card {
+    width: 90%;
+    margin: 10px 0;
+  }
+
+  .instruction-card > .instruction-row > .instruction-desc {
+    width: 100%;
+  }
+
+  input:checked + label {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .instruction-header {
+    font-size: 10pt;
+  }
+
+  .wrapper {
+    font-size: 8pt;
+  }
+
+  .instruction-card {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .instruction-card > .instruction-row > .instruction-icon {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+  }
+
+  .instruction-card > .instruction-row > .instruction-desc {
+    height: auto;
+    padding: 10px;
+  }
+}
+
 /* UploadDocModal */
 .upload-doc-modal {
   background: var(--gradient);
 }
 
-
 /* Easter egg */
-#easteregg{
+#easteregg {
   height: 200px;
   width: 100vw;
-  background-color: rgb(0,0,0,0);
+  background-color: rgb(0, 0, 0, 0);
   display: none;
   position: absolute;
   bottom: -50px;
   overflow-x: hidden;
 }
 
-@keyframes across{
-  0%{left:-412px;}
-  100%{left:100vw;}
+@keyframes across {
+  0% {
+    left: -412px;
+  }
+  100% {
+    left: 100vw;
+  }
 }
-#easter-egg-image{
+#easter-egg-image {
   position: relative;
   height: 100%;
 
   animation: across linear;
   animation-iteration-count: infinite;
   animation-duration: 5s;
+}
+
+/* MetamaskInfo */
+.metamask-video {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+.metamask-video p {
+  font-size: large;
+  text-align: center;
+}
+
+@media (max-width: 610px) {
+  .metamask-video {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .metamask-video iframe {
+    width: 300px;
+    height: 150px;
+  }
 }

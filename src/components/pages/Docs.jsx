@@ -7,6 +7,7 @@ import { Result, ethers } from "ethers";
 import { isAddress } from "web3-validator";
 import { Web3Provider } from "@ethersproject/providers";
 import axios from "axios";
+import QRCode from "qrcode.react";
 import "./styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,8 +16,7 @@ import {
     faCircleInfo
 } from "@fortawesome/free-solid-svg-icons";
 import switchNetworkImg from "../../assets/images/switch-network.png"
-import easteregg from "../../assets/images/nyan-cat.gif"
-
+import easteregg from "../../assets/images/nyan-cat.gif";
 
 const Docs = ({ wallet, networkSupported }) => {
     const [tokenIds, setTokenIds] = useState([]);
@@ -27,7 +27,8 @@ const Docs = ({ wallet, networkSupported }) => {
     const [receiverAddress, setReceiverAddress] = useState("");
     const [burnId, setBurnId] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
-
+    const [showDetails, setDetails] = useState(false);
+    const [selectedDoc, setSelectedDoc] = useState(null);
 
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
@@ -37,12 +38,11 @@ const Docs = ({ wallet, networkSupported }) => {
 
     const burnDoc = async (_id) => {
         console.log("BURNING " + _id);
-        console.log("BURNING " + _id);
         const provider = new Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
         const res = await contract.burnDoc(_id);
-        console.log("burned")
+        console.log("burned");
         handleClose();
     };
 
@@ -56,16 +56,21 @@ const Docs = ({ wallet, networkSupported }) => {
         setShowTransferModal(true);
     };
 
+    const handleShowDetailsModal = (document) => {
+        setSelectedDoc(document);
+        setDetails(true);
+    };
+
     const transferDoc = async (id, receiver) => {
         if (isAddress(receiver)) {
-            setErrorMessage("")
+            setErrorMessage("");
             console.log("transfer " + id + " to " + receiver);
             const provider = new Web3Provider(window.ethereum);
             const signer = provider.getSigner();
             const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
             const res = await contract.conductTransfer(receiver, id);
-            console.log("transfered")
-            setShowTransferModal(false)
+            console.log("transferred");
+            setShowTransferModal(false);
         } else {
             setErrorMessage("Invalid Ethereum address.");
         }
@@ -110,20 +115,18 @@ const Docs = ({ wallet, networkSupported }) => {
     useEffect(() => {
         const handleLoad = () => {
             let limit = (Math.random() * 1000) + 100;
-            //code for the easter egg
-            counter++
+            counter++;
             console.log(counter, limit);
-            if(counter >= limit){
+            if (counter >= limit) {
                 let eggelement = document.getElementById('easteregg');
                 eggelement.style.display = "block";
-            }   
+            }
         };
         document.addEventListener('click', handleLoad);
         return () => {
-          document.removeEventListener('click', handleLoad);
+            document.removeEventListener('click', handleLoad);
         };
-      }, []);
-
+    }, []);
 
     return (
         <>
@@ -134,13 +137,15 @@ const Docs = ({ wallet, networkSupported }) => {
                     <div className="doc-wrapper">
                         {metadata.map((document, index) => (
                             <div className="doc-card" key={index}>
-                                <h2>{document.name}</h2>
-                                <h2>Document's Id: {tokenIds[index]}</h2>
+                                <div className="doc-name">
+                                    <h2>{document.name}</h2>
+                                    <p>Id: {tokenIds[index]}</p>
+                                </div>
                                 <img src={document.image} alt="doc image" className="doc-image" />
                                 <div className="doc-controls">
                                     <button onClick={() => { handleShowTransferModal(tokenIds[index]) }}>Transfer <FontAwesomeIcon icon={faArrowRightArrowLeft} /></button>
                                     <button onClick={() => { handleShow(tokenIds[index]) }}>Burn <FontAwesomeIcon icon={faFire} /></button>
-                                    <button>Details <FontAwesomeIcon icon={faCircleInfo} /></button>
+                                    <button onClick={() => { handleShowDetailsModal(document) }}>Details <FontAwesomeIcon icon={faCircleInfo} /></button>
                                 </div>
                             </div>
                         ))}
@@ -154,15 +159,15 @@ const Docs = ({ wallet, networkSupported }) => {
                             <p>Please switch to Sepolia network in your metamask</p>
                             <img
                                 src={switchNetworkImg}
-                                alt=""
+                                alt="Switch network"
                                 className="w-40 mx-auto"
                             />
                         </div>
                     </div>
                 </div>
             )}
-            <div id = 'easteregg'>
-                <img src={easteregg} alt="easter egg" id = "easter-egg-image"/>
+            <div id='easteregg'>
+                <img src={easteregg} alt="easter egg" id="easter-egg-image" />
             </div>
             <Footer />
 
@@ -209,9 +214,30 @@ const Docs = ({ wallet, networkSupported }) => {
                     </div>
                 </div>
             </div>
+
+            {/* Details Modal */}
+            <div className={`fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center ${showDetails ? '' : 'hidden'}`} >
+                <div className="upload-doc-modal text-xl rounded-lg shadow-lg md:w-[600px] w-[90%] max-h-[80%] overflow-y-auto mx-auto flex flex-col p-5" style={{ background: "linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(4, 49, 54) 100%)" }}>
+                    <h2 className="text-2xl font-bold mb-4" style={{ color: "white" }}>
+                        Document Details
+                    </h2>
+                    {selectedDoc && (
+                        <>
+                            <h3 className="text-xl font-bold" style={{ color: "white" }}>{selectedDoc.name}</h3>
+                            <img src={selectedDoc.image} alt="doc image" className="doc-image mb-4" />
+                            <p className="text-white mb-4">{selectedDoc.description}</p>
+                            <QRCode value={JSON.stringify(selectedDoc)} size={256} bgColor={"#ffffff"} fgColor={"#000000"} level={"Q"} includeMargin={false} style={{ margin: "auto" }} />
+                        </>
+                    )}
+                    <div className="mt-4 flex justify-end">
+                        <button className="btn btn--outline btn--medium w-1/4 mx-auto font-extrabold" onClick={() => { setDetails(false) }}>
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
         </>
     );
 };
-
 
 export default Docs;

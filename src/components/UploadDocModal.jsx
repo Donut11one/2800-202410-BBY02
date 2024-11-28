@@ -27,7 +27,7 @@ const UploadDocModal = ({ onClose }) => {
     });
 
     const dataurl = await filehash(fileblob);
-    console.log(dataurl);
+    console.log(metadata);
     mintNFT(dataurl);
   };
 
